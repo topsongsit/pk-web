@@ -1,0 +1,2 @@
+php artisan infyom:scaffold Course --fromTable --tableName=courses  
+php artisan infyom:scaffold $ModuleName --fromTable --tableName=$table  
