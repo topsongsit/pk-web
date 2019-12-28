@@ -1,3 +1,6 @@
+@extends('_frontend.layout')
+@section('content')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,3 +110,4 @@
 </script>
 </body>
 </html>
+@endsection

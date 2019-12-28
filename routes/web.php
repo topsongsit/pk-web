@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
+// use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +35,17 @@ Route::group(['prefix' => '/admin',
 });
 
 Route::get('/home', 'HomeController@index');
+Route::get('/course', 'HomeController@course');
+Route::get('/trainer', 'HomeController@trainer');
+Route::get('/boxer', 'HomeController@boxer');
+Route::get('/stage', 'HomeController@stage');
+Route::get('/contact', 'HomeController@contact');
+
+Route::get('/info', function(){
+    return phpinfo();
+});
+
+
 
 
 

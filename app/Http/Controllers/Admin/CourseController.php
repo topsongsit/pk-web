@@ -54,10 +54,13 @@ class CourseController extends AppBaseController
      */
     public function store(Request $request)
     {
-        $path = $request->file('cimg')->store('public/upload');
+        // upload image  
+        $imageName = time().'.'.request()->cimg->getClientOriginalExtension();
+        request()->cimg->move(public_path('images'), $imageName);
         $input = $request->all();
-       
-        $input['cimg'] = str_replace('public','', $path);
+        $input['cimg'] = '/images/'.$imageName;
+
+
         $course = $this->courseRepository->create($input);
 
         Flash::success('Course saved successfully.');
@@ -116,6 +119,7 @@ class CourseController extends AppBaseController
     public function update($id, UpdateCourseRequest $request)
     {
         $course = $this->courseRepository->find($id);
+        $input = $request->all();
 
         if (empty($course)) {
             Flash::error('Course not found');
@@ -123,7 +127,16 @@ class CourseController extends AppBaseController
             return redirect(route('courses.index'));
         }
 
-        $course = $this->courseRepository->update($request->all(), $id);
+        if(request()->cimg){
+            // upload image  
+            $imageName = time().'.'.request()->cimg->getClientOriginalExtension();
+            request()->cimg->move(public_path('images'), $imageName);
+            $input = $request->all();
+
+            $input['cimg'] = '/images/'.$imageName;
+        }
+
+        $course = $this->courseRepository->update($input, $id);
 
         Flash::success('Course updated successfully.');
 
