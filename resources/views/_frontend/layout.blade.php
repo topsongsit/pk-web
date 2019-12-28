@@ -16,7 +16,7 @@
 <header style="font-family: 'Prompt', sans-serif;">
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #C30F28">        <a class="navbar-brand" href="/index">P.K.SaenchaiMuayThaiGym</a>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #C30F28">        <a class="navbar-brand" href="/home">P.K.SaenchaiMuayThaiGym</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

@@ -32,14 +32,19 @@ Route::group(['prefix' => '/admin',
     Route::resource('courses', 'CourseController');
     Route::resource('stages', 'StageController');
     Route::resource('bookings', 'BookingController');
-});
+    Route::resource('trainers', 'TrainerController');
 
+});
+Route::resource('bookings', 'BookingController');
 Route::get('/home', 'HomeController@index');
 Route::get('/course', 'HomeController@course');
 Route::get('/trainer', 'HomeController@trainer');
 Route::get('/boxer', 'HomeController@boxer');
 Route::get('/stage', 'HomeController@stage');
 Route::get('/contact', 'HomeController@contact');
+Route::get('/check', 'HomeController@check');
+Route::get('/finalbooking', 'HomeController@finalbooking');
+
 
 Route::get('/info', function(){
     return phpinfo();
@@ -51,3 +56,6 @@ Route::get('/info', function(){
 
 
 
+
+
+Route::resource('trainers', 'TrainerController');

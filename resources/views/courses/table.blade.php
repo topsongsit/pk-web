@@ -2,10 +2,10 @@
     <table class="table" id="courses-table">
         <thead>
             <tr>
-                <th>Cname</th>
-        <th>Cdetail</th>
-        <th>Cimg</th>
-        <th>Cprice</th>
+                <th>Name</th>
+        <th>Detail</th>
+        <th>Img</th>
+        <th>Price</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>

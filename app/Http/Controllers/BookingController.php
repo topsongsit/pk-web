@@ -35,7 +35,20 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->user();
+
+        // return request()->image;
+        $imageName = time().'.'.request()->image->getClientOriginalExtension();
+        request()->image->move(public_path('images'), $imageName);
+        $input = $request->all();
+        $input['bmoney_img'] = '/images/'.$imageName;
+        $input['user_id'] = $user->id;
+
+        $booking = Booking::create($input);
+
+        return redirect('/');
+
+        
     }
 
     /**

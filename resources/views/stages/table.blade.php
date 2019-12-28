@@ -2,9 +2,9 @@
     <table class="table" id="stages-table">
         <thead>
             <tr>
-                <th>Stname</th>
-        <th>Stdetail</th>
-        <th>Stimg</th>
+                <th>Name</th>
+        <th>Detail</th>
+        <th>Img</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>

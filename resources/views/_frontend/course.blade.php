@@ -12,7 +12,12 @@
             <h3>{{ $course->cname }}</h3>
             <p>{{ $course->cdetail }}</p>
             <p>{{ $course->cprice }}</p>
-            <button>จอง</button>
+            <a href="/trainer?course={{ $course->id }}">
+                <button>จองกับเทรนเนอร์ ฟรี</button>
+            </a>
+            <a href="/trainer?boxer={{ $course->id }}">
+                <button>จองกับนักมวย</button>
+            </a>
         </div>
     </div>
 

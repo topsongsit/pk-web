@@ -33,7 +33,7 @@ class CreateBookingsTable extends Migration
                 ->on('trainers')
                 ->onDelete('cascade');
 
-            $table->integer('status_id')->unsigned();
+            $table->integer('status_id')->unsigned()->default(1);
             $table->foreign('status_id')
                 ->references('id')
                 ->on('statuses')

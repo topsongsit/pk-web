@@ -6,7 +6,7 @@
         <th>Course Id</th>
         <th>Trainer Id</th>
         <th>Status Id</th>
-        <th>Bmoney Img</th>
+        <th>Money Img</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
