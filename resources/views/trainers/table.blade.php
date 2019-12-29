@@ -15,7 +15,7 @@
             <tr>
                 <td>{{ $trainer->tname }}</td>
             <td>{{ $trainer->tdetail }}</td>
-            <td>{{ $trainer->timg }}</td>
+            <td> <img src="{{ $trainer->timg }}" width="100"> </td>
             <td>{{ $trainer->tcategory }}</td>
             <td>{{ $trainer->tprice }}</td>
                 <td>

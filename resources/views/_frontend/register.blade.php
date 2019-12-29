@@ -45,7 +45,7 @@
 </header>
 
     <div class="container ">
-        <br><br><br><div class="row justify-content-center align-items-center"">
+        <br><br><br><div class="row justify-content-center align-items-center">
             <div class="col-4">
                 <div class="card">
                        <div class="card-body ">

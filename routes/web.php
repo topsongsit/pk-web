@@ -44,6 +44,7 @@ Route::get('/stage', 'HomeController@stage');
 Route::get('/contact', 'HomeController@contact');
 Route::get('/check', 'HomeController@check');
 Route::get('/finalbooking', 'HomeController@finalbooking');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
 Route::get('/info', function(){

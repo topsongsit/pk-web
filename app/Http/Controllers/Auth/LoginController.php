@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use phpDocumentor\Reflection\Types\Boolean;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class LoginController extends Controller
 {
@@ -41,6 +42,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/login');
+      }
 
      /**
      * Send the response after the user was authenticated.

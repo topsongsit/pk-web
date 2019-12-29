@@ -14,14 +14,13 @@
 </head>
 <body>
 <header style="font-family: 'Prompt', sans-serif;">
-
+    <ul class="navbar-nav">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #C30F28">        <a class="navbar-brand" href="/home">P.K.SaenchaiMuayThaiGym</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            
             <ul class="navbar-nav ml-auto">
                 <li>
                     <a class="nav-link" href="/home">หน้าหลัก</a>
@@ -41,17 +40,22 @@
                 <li>
                     <a class="nav-link" href="/contact">ติดต่อเรา</a>
                 </li>
+                
                 @if(\Auth::check())
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">username: {{ \Auth::user()->std_name }}</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown03">
-                        <a class="dropdown-item" href="{{\Auth::user()->id}}/edit" >Edit Profile</a>
-                        <a class="dropdown-item" href="/logout">logout</a>
+                <li class="nav-link">
+                    <a class="">คุณ: {{ \Auth::user()->name }}</a>
+                        <a  href="/logout">logout</a>
                     </div>
                 </li>
+                @else
+                <li>
+                    <a class="nav-link" href="/register">สมัครสมาชิก</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/login">เข้าสู่ระบบ</a>
+                </li>
                 @endif
-            </ul>
-            
+            </ul>        
         </div>
     </nav>
 </header>

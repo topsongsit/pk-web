@@ -47,7 +47,7 @@
             @csrf
 
             <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Full Name">
+                <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="ชื่อจริง">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
                 @if ($errors->has('name'))
@@ -57,19 +57,20 @@
                 @endif
             </div>
 
-            <div class="form-group has-feedback{{ $errors->has('username') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username">
+            <div class="form-group has-feedback{{ $errors->has('surname') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="surname" value="{{ old('surname') }}" placeholder="นามสกุล">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
-                @if ($errors->has('username'))
+                @if ($errors->has('surname'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('username') }}</strong>
+                        <strong>{{ $errors->first('surname') }}</strong>
                     </span>
                 @endif
             </div>
+            
 
             <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="อีเมล">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
                 @if ($errors->has('email'))
@@ -80,7 +81,7 @@
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                <input type="password" class="form-control" name="password" placeholder="Password">
+                <input type="password" class="form-control" name="password" placeholder="พาสเวิร์ด">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                 @if ($errors->has('password'))
@@ -91,12 +92,56 @@
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm password">
+                <input type="password" name="password_confirmation" class="form-control" placeholder="ยืนยันพาสเวิร์ด">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                 @if ($errors->has('password_confirmation'))
                     <span class="help-block">
                         <strong>{{ $errors->first('password_confirmation') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group has-feedback{{ $errors->has('age') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="age" value="{{ old('age') }}" placeholder="วันเกิด">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+                @if ($errors->has('age'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('age') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group has-feedback{{ $errors->has('tel') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="tel" value="{{ old('tel') }}" placeholder="เบอร์โทร">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+                @if ($errors->has('tel'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('tel') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group has-feedback{{ $errors->has('gender_id') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="gender_id" value="{{ old('gender_id') }}" placeholder="เพศ">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+                @if ($errors->has('gender_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('gender_id') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group has-feedback{{ $errors->has('history') ? ' has-error' : '' }}">
+                <input type="text" class="form-control" name="history" value="{{ old('history') }}" placeholder="ประวัติ">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+                @if ($errors->has('history'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('history') }}</strong>
                     </span>
                 @endif
             </div>

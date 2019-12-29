@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTrainerRequest;
 use App\Http\Requests\UpdateTrainerRequest;
@@ -54,9 +54,14 @@ class TrainerController extends AppBaseController
      */
     public function store(CreateTrainerRequest $request)
     {
+        // upload image  
+        $imageName = time().'.'.request()->timg->getClientOriginalExtension();
+        request()->timg->move(public_path('images'), $imageName);
         $input = $request->all();
+        $input['timg'] = '/images/'.$imageName;
 
-        $trainer = $this->trainerRepository->create($input);
+
+        $trainer = $this->courseRepository->create($input);
 
         Flash::success('Trainer saved successfully.');
 

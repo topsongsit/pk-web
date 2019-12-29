@@ -13,7 +13,7 @@
             <tr>
                 <td>{{ $stage->stname }}</td>
             <td>{{ $stage->stdetail }}</td>
-            <td>{{ $stage->stimg }}</td>
+            <td> <img src="{{ $stage->stimg  }}" width="100"> </td>
                 <td>
                     {!! Form::open(['route' => ['stages.destroy', $stage->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
