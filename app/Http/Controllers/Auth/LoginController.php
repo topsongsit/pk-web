@@ -67,7 +67,7 @@ class LoginController extends Controller
         $user =  User::where('email',$email)->first();
       
         if ($user->is_admin == 1) {
-            // Auth::guard('admin');
+            Auth::guard('web');
            return redirect()->intended('/admin');
 
         }

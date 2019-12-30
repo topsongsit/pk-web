@@ -59,7 +59,6 @@
 </head>
 <body class="hold-transition login-page " style="font-family: 'Prompt', sans-serif; "> 
     <div class="container">
-
         <div class="row justify-content-center align-items-center">
             <div class="col-4">
                 <br><br><br><br><br><div class="card">

@@ -27,41 +27,37 @@
     @yield('css')
 </head>
 
-<body class="skin-blue sidebar-mini">
+<body class="skin-blue sidebar-mini "style="font-family: 'Prompt', sans-serif ;" >
 @if (!Auth::guest())
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
 
             <!-- Logo -->
-            <a href="#" class="logo">
-                <b>P.K.SaenchaiMuayThai</b>
-            </a>
-
             <!-- Header Navbar -->
-            <nav class="navbar navbar-static-top" role="navigation">
+            <nav class="navbar " style="background-color:#dc1800;" role="navigation">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
                 <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
+                <div class="navbar-custom-menu" >
                     <ul class="nav navbar-nav">
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background-color:#dc1800;">
                                 <!-- The user image in the navbar-->
-                                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                     class="user-image" alt="User Image"/>
+                                {{-- <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                     class="user-image" alt="User Image"/> --}}
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{{ Auth::user()->name }}</span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu ">
                                 <!-- The user image in the menu -->
-                                <li class="user-header">
-                                    <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                         class="img-circle" alt="User Image"/>
+                                <li class="user-header " style="background-color:#dc1800;">
+                                    {{-- <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                         class="img-circle" alt="User Image"/> --}}
                                     <p>
                                         {{ Auth::user()->name }}
                                         <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
@@ -70,10 +66,10 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="#" class="btn text-white"  style="background-color:#dc1800;">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="{{ url('/logout') }}" class="btn btn-default btn-flat"
+                                        <a href="{{ url('/logout') }}" class="btn btn-default btn-flat" style="background-color:#dc1800;"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Sign out
                                         </a>
@@ -98,7 +94,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Project Student 13590036<a href="#">Songsit Thetrungrueang</a>.</strong>
+            <strong>Project Student 13590036 <br><h5>Songsit Thetrungrueang</h5></strong>
         </footer>
 
     </div>
@@ -129,7 +125,7 @@
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right ">
                     <!-- Authentication Links -->
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Register</a></li>

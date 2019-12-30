@@ -60,13 +60,12 @@ class StageController extends AppBaseController
         $input = $request->all();
         $input['stimg'] = '/images/'.$imageName;
 
-        $stage = $this->stageRepository->create($input);
+        $stage = $this->stageRepositor->create($input);
 
         Flash::success('Stage saved successfully.');
 
         return redirect(route('stages.index'));
     }
-
     /**
      * Display the specified Stage.
      *
