@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Prompt&display=swap" rel="stylesheet">
 
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+
 </head>
 <body>
 <header style="font-family: 'Prompt', sans-serif;">
@@ -29,10 +36,7 @@
                     <a class="nav-link" href="/course">คอร์สเรียน</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="/trainer">เทรนเนอร์</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="/boxer">นักมวย</a>
+                    <a class="nav-link" href="/trainer">ผู้สอน</a>
                 </li>
                 <li>
                     <a class="nav-link" href="/stage">สนามมวย</a>
@@ -75,6 +79,8 @@
 <script src="/js/sweetalert.min.js"></script>
 <script src="/js/messagebox.js"></script>
 <script src="/js/app.js"></script>
+
+
 
 </body>
 </html>

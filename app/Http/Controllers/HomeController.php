@@ -41,7 +41,7 @@ class HomeController extends Controller
 
 
         // return $courses;
-        return view('welcome')->with('courses',$courses)->with('stages',$stages)->with('trainers',$trainers);
+        return view('_frontend.index')->with('courses',$courses)->with('stages',$stages)->with('trainers',$trainers);
     }
 
     public function course()

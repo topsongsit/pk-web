@@ -52,7 +52,7 @@ class StageController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateStageRequest $request)
+    public function store(Request $request)
     {
         // upload image  
         $imageName = time().'.'.request()->stimg->getClientOriginalExtension();

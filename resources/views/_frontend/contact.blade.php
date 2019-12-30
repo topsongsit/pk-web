@@ -4,13 +4,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-  <style>
-    p {
-      font-family: 'Prompt', sans-serif;
-      }
-    </style>
 
+  <header style="font-family: 'Prompt', sans-serif;">
     <div class="container mt-5" style="color:white !important" >
           <h3 class=" mt-5"></h3>
           <div class="row">
@@ -19,9 +14,9 @@
                   frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                 </div>
                 <div class="col-md-6 ">
-                  <p >แผนที่</p>
-                  <p>1184/432  soi thanonchan 43 yak26-1 jan road bangko bangkorleam bangkok 10120 </p>
-                  <p>เบอร์ติดต่อ</p>
+                  <h2>แผนที่</h2>
+                  <p>1184/311 ชุมชนวัดไผ่เงิน ซอย 7 แขวง บางโคล่ เขตบางคอแหลม กรุงเทพมหานคร 10120</p>
+                  <h2>เบอร์ติดต่อ</h2>
                   <p>090 720 1059 คุณเกม (ผู้จัดการ)</p>
                 </div>
           </div>
@@ -29,7 +24,7 @@
   
 
 
-        
-        </body>
+</header>        
+</body>
 </html>
 @endsection

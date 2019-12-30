@@ -13,7 +13,7 @@
 <!-- Stimg Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('stimg', 'Stimg:') !!}
-    {!! Form::file('stimg', null, ['class' => 'form-control']) !!}
+    {!! Form::file('stimg', ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

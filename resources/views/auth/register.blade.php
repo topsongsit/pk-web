@@ -1,4 +1,4 @@
-@extends('_frontend.layout')
+@extends('_frontend.layout_login')
 @section('content')
 
 <!DOCTYPE html>
@@ -6,42 +6,65 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>InfyOm Laravel Generator | Registration Page</title>
+    <title>P.K.SaenchaiMuayThai</title>
 
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-
-    <!-- Theme style -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/skins/_all-skins.min.css">
-
-    <!-- iCheck -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/_all.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-<body class="hold-transition register-page">
-<div class="register-box">
-    <div class="register-logo">
-        <a href="{{ url('/home') }}"><b>P.K.SaenchaiMuayThai</a>
+    <header style="font-family: 'Prompt', sans-serif;">
+        <ul class="navbar-nav">
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #C30F28"> <a class="navbar-brand" href="/home">P.K.SaenchaiMuayThaiGym</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li>
+                        <a class="nav-link" href="/home">หน้าหลัก</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/course">คอร์สเรียน</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/trainer">ผู้สอน</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/stage">สนามมวย</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/contact">ติดต่อเรา</a>
+                    </li>
+                    
+                    @if(\Auth::check())
+                    <li class="nav-link">
+                        <a class="">คุณ: {{ \Auth::user()->name }}</a>
+                            <a  href="/logout">logout</a>
+                        </div>
+                    </li>
+                    @else
+                    <li>
+                        <a class="nav-link" href="/register">สมัครสมาชิก</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="/login">เข้าสู่ระบบ</a>
+                    </li>
+                    @endif
+                </ul>        
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        @yield('content')
     </div>
 
-    <div class="register-box-body">
-        <p class="login-box-msg">Register a new membership</p>
+
+</head>
+<body class="hold-transition login-page " style="font-family: 'Prompt', sans-serif; "> 
+    <div class="container">
+
+        <div class="row justify-content-center align-items-center">
+            <div class="col-4">
+                <br><br><br><br><br><div class="card">
+                    <div class="card-body text-center ">
+                        <h3 class="mb-4">สมัครสมาชิกใหม่</h3>
 
         <form method="post" action="{{ url('/register') }}">
             @csrf
@@ -103,7 +126,7 @@
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('age') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" name="age" value="{{ old('age') }}" placeholder="วันเกิด">
+                <input type="date" class="form-control" name="age" value="{{ old('age') }}" placeholder="วันเกิด">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
                 @if ($errors->has('age'))
@@ -112,6 +135,7 @@
                     </span>
                 @endif
             </div>
+            
 
             <div class="form-group has-feedback{{ $errors->has('tel') ? ' has-error' : '' }}">
                 <input type="text" class="form-control" name="tel" value="{{ old('tel') }}" placeholder="เบอร์โทร">
@@ -123,9 +147,10 @@
                     </span>
                 @endif
             </div>
-
+            <div class="text-left">
             <div class="form-group has-feedback{{ $errors->has('gender_id') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" name="gender_id" value="{{ old('gender_id') }}" placeholder="เพศ">
+                <input type="radio" name="gender_id" value="1"> ผู้ชาย
+                <input type="radio" name="gender_id" value="2"> ผู้หญิง
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
                 @if ($errors->has('gender_id'))
@@ -133,6 +158,7 @@
                         <strong>{{ $errors->first('gender_id') }}</strong>
                     </span>
                 @endif
+            </div>
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('history') ? ' has-error' : '' }}">
@@ -147,22 +173,22 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
+                <div class="col-12">
+                    <div class="checkbox icheck text-left">
                         <label>
-                            <input type="checkbox"> I agree to the <a href="#">terms</a>
+                            <input type="checkbox"> I agree to the <a href="#">terms</a><br>มีบัญชีอยู่แล้ว?
+                            <a href="{{ url('/login') }}" class="text-center">เข้าสู่ระบบ</a>
+
                         </label>
                     </div>
                 </div>
                 <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-block btn-danger">Register</button>
                 </div>
                 <!-- /.col -->
             </div>
         </form>
-
-        <a href="{{ url('/login') }}" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
 </div>
@@ -176,7 +202,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
-<script>
+{{-- <script>
     $(function () {
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
@@ -184,7 +210,10 @@
             increaseArea: '20%' // optional
         });
     });
-</script>
+
+   
+</script> --}}
+
 </body>
 </html>
 @endsection
