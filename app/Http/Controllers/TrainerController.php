@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateTrainerRequest;
 use App\Repositories\TrainerRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
+use Laracasts\Flash\Flash;
 use Response;
 
 class TrainerController extends AppBaseController
@@ -60,8 +60,7 @@ class TrainerController extends AppBaseController
         $input = $request->all();
         $input['timg'] = '/images/'.$imageName;
 
-
-        $trainer = $this->courseRepository->create($input);
+        $trainer = $this->trainerRepository->create($input);
 
         Flash::success('Trainer saved successfully.');
 
@@ -124,6 +123,14 @@ class TrainerController extends AppBaseController
             Flash::error('Trainer not found');
 
             return redirect(route('trainers.index'));
+        }
+        if(request()->timg){
+        // upload image  
+        $imageName = time().'.'.request()->timg->getClientOriginalExtension();
+        request()->timg->move(public_path('images'), $imageName);
+        $input = $request->all();
+        $input['timg'] = '/images/'.$imageName;
+
         }
 
         $trainer = $this->trainerRepository->update($request->all(), $id);

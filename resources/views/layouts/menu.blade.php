@@ -4,9 +4,8 @@
 <li class="{{ Request::is('admin.stages*') ? 'active' : '' }}">
     <a href="{{ route('stages.index') }}"><i class="fa fa-align-justify"></i><span>Stages</span></a>
 </li>
-
 <li class="{{ Request::is('admin.trainers*') ? 'active' : '' }}">
-    <a href="{{ route('trainers.index') }}"><i class="fa fa-align-justify"></i><span>Trainer</span></a>
+    <a href="{{ route('trainers.index') }}"><i class="fa fa-align-justify"></i><span>Trainers</span></a>
 </li>
 
 <li class="{{ Request::is('admin.bookings*') ? 'active' : '' }}">

@@ -66,9 +66,9 @@
         <div class="row">
             @foreach($stages as $stage)
             <div class="col-md-12">
-                <img class="card-img-top d-flex" src="{{ $stage->simg }}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $stage->stname }} </h5>
+                <img class="card-img-top d-flex" src="{{ $stage->stimg }}" width="100" alt="Card image cap">
+                <h5 class="card-title">{{ $stage->stname }} </h5>
                 </div>
             </div>
             @endforeach

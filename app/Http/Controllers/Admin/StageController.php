@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateStageRequest;
 use App\Repositories\StageRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
+use Laracasts\Flash\Flash;
 use Response;
 
 class StageController extends AppBaseController
@@ -55,12 +55,14 @@ class StageController extends AppBaseController
     public function store(Request $request)
     {
         // upload image  
+        
         $imageName = time().'.'.request()->stimg->getClientOriginalExtension();
         request()->stimg->move(public_path('images'), $imageName);
         $input = $request->all();
         $input['stimg'] = '/images/'.$imageName;
 
-        $stage = $this->stageRepositor->create($input);
+
+        $stages = $this->stageRepository->create($input);
 
         Flash::success('Stage saved successfully.');
 
@@ -116,31 +118,29 @@ class StageController extends AppBaseController
      */
     public function update($id, UpdateStageRequest $request)
     {
-        $stage = $this->stageRepository->find($id);
+        $stages = $this->stageRepository->find($id);
         $input = $request->all();
 
-        if (empty($stage)) {
+        if (empty($stages)) {
             Flash::error('Stage not found');
 
             return redirect(route('stages.index'));
         }
-
         if(request()->stimg){
             // upload image  
-            
             $imageName = time().'.'.request()->stimg->getClientOriginalExtension();
             request()->stimg->move(public_path('images'), $imageName);
             $input = $request->all();
-
             $input['stimg'] = '/images/'.$imageName;
         }
 
-        $stage = $this->stageRepository->update($input, $id);
+        $stages = $this->stageRepository->update($input, $id);
 
         Flash::success('Stage updated successfully.');
 
         return redirect(route('stages.index'));
     }
+
 
     /**
      * Remove the specified Stage from storage.

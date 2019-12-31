@@ -31,10 +31,11 @@ Route::group(['prefix' => '/admin',
     Route::get('/', 'HomeController@index');
     Route::resource('courses', 'CourseController');
     Route::resource('stages', 'StageController');
-    Route::resource('bookings', 'BookingController');
     Route::resource('trainers', 'TrainerController');
-
+    Route::resource('bookings', 'BookingController');
 });
+
+
 Route::resource('bookings', 'BookingController');
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
