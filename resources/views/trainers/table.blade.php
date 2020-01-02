@@ -7,7 +7,7 @@
         <th>Img</th>
         <th>Category</th>
         <th>Price</th>
-                <th colspan="3">Action</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -32,3 +32,10 @@
         </tbody>
     </table>
 </div>
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#trainers-table').DataTable();
+    } );
+    </script>
+@stop

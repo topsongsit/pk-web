@@ -10,9 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Route;
 // use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,7 +25,7 @@ Auth::routes();
 Route::group(['prefix' => '/admin',
  'namespace'=> 'Admin',
   'name' => 'admin',
-//   'middleware' => 'admin'
+  'middleware' => 'admin'
 
 ], function(){
     Route::get('/', 'HomeController@index');
@@ -38,9 +38,11 @@ Route::group(['prefix' => '/admin',
 
 Route::resource('bookings', 'BookingController');
 Route::get('/', 'HomeController@index');
+Route::get('/editprofile', 'HomeController@editprofile');
 Route::get('/home', 'HomeController@index');
 Route::get('/course', 'HomeController@course');
 Route::get('/trainer', 'HomeController@trainer');
+Route::get('/trainer/{trainer}', 'HomeController@trainerDetail')->name('trainer.detail');
 Route::get('/boxer', 'HomeController@boxer');
 Route::get('/stage', 'HomeController@stage');
 Route::get('/contact', 'HomeController@contact');
@@ -52,13 +54,3 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/info', function(){
     return phpinfo();
 });
-
-
-
-
-
-
-
-
-
-Route::resource('trainers', 'TrainerController');
