@@ -14,15 +14,13 @@
                 <div class="card-body">
                     <h4 class="card-title">{{ $course->cname }} </h4>
                      <h5 class="card-text">ราคา {{ $course->cprice }} บาท </h5>
-                     <a href="{{ url('/course') }}" class="text-center">รายละเอียด</a>
-
                 </div>
             </div>
         </div>
         @endforeach
         {{-- {{ --@endfor-- }} --}}
     </div>
-       
+    <a href="/trainer" class="text-center">ดูทั้งหมด</a>
         {{-- คอร์สเรียน --}}
         
     <h3 class=" mt-5">ผู้สอน</h3>
@@ -34,13 +32,13 @@
                 <img class="card-img-top d-flex" src="{{ $trainer->timg }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ $trainer->tname }}</h5>
-                    <a href="{{ url('') }}" class="text-center">รายละเอียด</a>
                 </div>
             </div>
         </div>
         @endforeach
         {{-- @endfor --}}
     </div>
+    <a href="/trainer" class="text-center">ดูทั้งหมด</a>
 
         {{-- เทรนเนอร์ --}}
 
@@ -68,7 +66,6 @@
             <div class="col-md-12">
                 <div class="card-body">
                 <img class="card-img-top d-flex" src="{{ $stage->stimg }}" width="100" alt="Card image cap">
-                <h5 class="card-title">{{ $stage->stname }} </h5>
                 </div>
             </div>
             @endforeach

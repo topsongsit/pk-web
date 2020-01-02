@@ -13,7 +13,7 @@
 <!-- Timg Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('timg', 'Timg:') !!}
-    {!! Form::file('timg', null, ['class' => 'form-control']) !!}
+    {!! Form::file('timg',['class' => 'form-control']) !!}
 </div>
 
 <!-- Tcategory Field -->

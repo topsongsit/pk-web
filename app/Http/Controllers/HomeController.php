@@ -9,8 +9,6 @@ use App\Repositories\CourseRepository;
 use App\Repositories\StageRepository;
 use App\Repositories\TrainerRepository;
 
-
-
 class HomeController extends Controller
 {
     /**
@@ -37,7 +35,6 @@ class HomeController extends Controller
         $courses = $this->courseRepository->makeModel()->limit(3)->get();
         $stages = $this->stageRepository->makeModel()->limit(1)->get();
         $trainers = $this->trainerRepository->makeModel()->limit(4)->get();
-
 
         // return $courses;
         return view('_frontend.index')->with('courses', $courses)->with('stages', $stages)->with('trainers', $trainers);
