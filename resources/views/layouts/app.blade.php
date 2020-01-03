@@ -35,18 +35,18 @@
 
             <!-- Logo -->
             <!-- Header Navbar -->
-            <nav class="navbar " style="background-color:#dc1800;" role="navigation">
-                <!-- Sidebar toggle button-->
+            <nav class="navbar " style="background-color:#a71200;" role="navigation">
+                {{-- <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
-                </a>
+                </a> --}}
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu" >
                     <ul class="nav navbar-nav">
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background-color:#dc1800;">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background-color:#a71100;">
                                 <!-- The user image in the navbar-->
                                 {{-- <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
                                      class="user-image" alt="User Image"/> --}}
@@ -55,9 +55,9 @@
                             </a>
                             <ul class="dropdown-menu ">
                                 <!-- The user image in the menu -->
-                                <li class="user-header " style="background-color:#dc1800;">
-                                    {{-- <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                         class="img-circle" alt="User Image"/> --}}
+                                <li class="user-header " style="background-color:#a71100;">
+                                    <img src="/images/555.png"
+                                         class="img-circle" alt="User Image"/>
                                     <p>
                                         {{ Auth::user()->name }}
                                         <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
@@ -65,11 +65,8 @@
                                 </li>
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn text-white"  style="background-color:#dc1800;">Profile</a>
-                                    </div>
                                     <div class="pull-right">
-                                        <a href="{{ url('/logout') }}" class="btn btn-default btn-flat" style="background-color:#dc1800;"
+                                        <a href="{{ url('/logout') }}"  class="btn btn-default btn-flat text-white" style="background-color:#f6f6f6; "
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Sign out
                                         </a>
@@ -106,7 +103,7 @@
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="sr-only"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -156,7 +153,5 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
-    @include('layouts.datatables_js')
-    @yield('scripts')
 </body>
 </html>

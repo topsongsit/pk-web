@@ -18,16 +18,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Auth::routes();
 
-
-Route::group(['prefix' => '/admin',
- 'namespace'=> 'Admin',
-  'name' => 'admin',
-  'middleware' => 'admin'
-
-], function(){
+// ของแอดมิน พอล็อกอินแล้วให้เด้งไปหน้า /แอดมินเลย
+Route::group([
+    'prefix' => '/admin',
+    'namespace' => 'Admin',
+    'name' => 'admin',
+    'middleware' => 'admin'
+], function () {
     Route::get('/', 'HomeController@index');
     Route::resource('courses', 'CourseController');
     Route::resource('stages', 'StageController');
@@ -35,7 +34,7 @@ Route::group(['prefix' => '/admin',
     Route::resource('bookings', 'BookingController');
 });
 
-
+// ของ user ปกติ
 Route::resource('bookings', 'BookingController');
 Route::get('/', 'HomeController@index');
 Route::get('/editprofile', 'HomeController@editprofile');
@@ -49,8 +48,3 @@ Route::get('/contact', 'HomeController@contact');
 Route::get('/check', 'HomeController@check');
 Route::get('/finalbooking', 'HomeController@finalbooking');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
-
-Route::get('/info', function(){
-    return phpinfo();
-});

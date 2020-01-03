@@ -123,7 +123,7 @@
                     </span>
                 @endif
             </div>
-
+            <h6 class="text-left">วันเกิด</h6>
             <div class="form-group has-feedback{{ $errors->has('age') ? ' has-error' : '' }}">
                 <input type="date" class="form-control" name="age" value="{{ old('age') }}" placeholder="วันเกิด">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -161,7 +161,7 @@
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('history') ? ' has-error' : '' }}">
-                <input type="text" class="form-control" name="history" value="{{ old('history') }}" placeholder="ประวัติ">
+                <input type="text" class="form-control" name="history" value="{{ old('history') }}" placeholder="ประวัติการรักษา,โรคประจำตัว">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
                 @if ($errors->has('history'))
@@ -175,7 +175,8 @@
                 <div class="col-12">
                     <div class="checkbox icheck text-left">
                         <label>
-                            <input type="checkbox"> I agree to the <a href="#">terms</a><br>มีบัญชีอยู่แล้ว?
+                            {{-- <input type="checkbox"> ฉันยอมรับ<a href="#">เงื่อนไข</a> --}}
+                            มีบัญชีอยู่แล้ว?
                             <a href="{{ url('/login') }}" class="text-center">เข้าสู่ระบบ</a>
 
                         </label>
