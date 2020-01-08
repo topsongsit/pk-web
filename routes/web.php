@@ -35,9 +35,10 @@ Route::group([
 });
 
 // ของ user ปกติ
-Route::resource('bookings', 'BookingController');
 Route::get('/', 'HomeController@index');
 Route::get('/editprofile', 'HomeController@editprofile');
+Route::get('/transfer', 'HomeController@transfer');
+Route::get('/tabletime', 'HomeController@tabletime');
 Route::get('/home', 'HomeController@index');
 Route::get('/course', 'HomeController@course');
 Route::get('/trainer', 'HomeController@trainer');
@@ -46,5 +47,6 @@ Route::get('/boxer', 'HomeController@boxer');
 Route::get('/stage', 'HomeController@stage');
 Route::get('/contact', 'HomeController@contact');
 Route::get('/check', 'HomeController@check');
-Route::get('/finalbooking', 'HomeController@finalbooking');
+Route::post('/booking/store', 'HomeController@saveBooking');
+Route::get('/booking/show/{id}', 'HomeController@booking')->name('booking.show');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

@@ -2,7 +2,8 @@
 @section('content');
 <div class="container mt-5 text-white">
     <header style="font-family: 'Prompt', sans-serif ;">   
-    <h3 class="text-center">การจองสำเร็จ รหัส</h3><br>
+    <h3 class="text-center">การจองสำเร็จ รหัส {{$booking->booking_number}}
+    </h3><br>
     <img src="/images/1.png" class="rounded mx-auto d-block" width="200">
     <div class="col-12">
        <br><h4>- ชำระโดยโอนเงินเข้าบัญชี</h4> 
@@ -17,7 +18,7 @@
        <h5> ***สามารถยกเลิกการจองคอร์สเรียนได้ก่อน 3 วันก่อนวันมาเรียน หากไม่มีการยกเลิก ทางค่ายของสงวนสิทธิ์เก็บค่ามัดจำ***</h5>
         </div><br><br>
     </div>
-
+{{-- {{ dd($booking->user->email , $booking->course->cname) }} --}}
     <div>
         <h5>อัพโหลดใบโอนเงิน</h5>
         <form action="bookings" method="POST" enctype="multipart/form-data">

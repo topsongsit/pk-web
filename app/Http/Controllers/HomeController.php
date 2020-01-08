@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Repositories\CourseRepository;
 use App\Repositories\StageRepository;
 use App\Repositories\TrainerRepository;
+use App\Repositories\BookingRepository;
 
 class HomeController extends Controller
 {
@@ -16,13 +17,14 @@ class HomeController extends Controller
      *
      * @return void
      */
-    private $courseRepository, $stageRepository, $trainerRepository;
+    private $courseRepository, $stageRepository, $trainerRepository, $bookingRepository;
 
-    public function __construct(CourseRepository $courseRepo, StageRepository $stageRepo, TrainerRepository $trainerRepo)
+    public function __construct(BookingRepository $bookingRepo, CourseRepository $courseRepo, StageRepository $stageRepo, TrainerRepository $trainerRepo)
     {
         $this->courseRepository = $courseRepo;
         $this->stageRepository = $stageRepo;
         $this->trainerRepository = $trainerRepo;
+        $this->bookingRepository = $bookingRepo;
     }
 
     /**
@@ -82,19 +84,93 @@ class HomeController extends Controller
 
     public function check(Request $request)
     {
-        $course = $this->courseRepository->find($request->course);
-        $trainer = $this->trainerRepository->find($request->trainer);
+        if (!empty($request->input('course'))) {
+            $course = $this->courseRepository->find($request->course);
+            $trainer = $this->trainerRepository->find($request->trainer);
+            $request->session()->put('check', ['course' => $request->course, 'trainner' =>  $request->trainer]);
+            $summary = $this->calculate($course->cprice, $trainer->tprice);
 
-        return view('_frontend.check')->with('course', $course)->with('trainer', $trainer);
+            return view('_frontend.check')->with('course', $course)->with('trainer', $trainer)->with('summary', $summary);
+        }
+        $check = $request->session()->get('check', []);
+        if (count($check) == 0) {
+            return redirect('/course');
+        }
+
+        $course = $this->courseRepository->find($check['course']);
+        $trainer = $this->trainerRepository->find($check['trainner']);
+        $summary = $this->calculate($course->cprice, $trainer->tprice);
+
+        return view('_frontend.check')->with('course', $course)->with('trainer', $trainer)->with('summary', $summary);
     }
 
-    public function finalbooking()
+    public function saveBooking(Request $request)
     {
-        return view('_frontend.finalbooking');
+        $check = $request->session()->get('check', []);
+        if (count($check) == 0) {
+            return redirect('/course');
+        }
+        //
+        $course = $this->courseRepository->find($check['course']);
+        if ($course == null) {
+            return redirect('/course');
+        }
+        //
+        $trainer = $this->trainerRepository->find($check['trainner']);
+        if ($trainer == null) {
+            return redirect('/course');
+        }
+        $userid = auth()->user()->id;
+        $date =   date('YmdHis');
+        $bookingNumber = 'BK' . sprintf("%'.015s", $date);
+        $bookingfinish = $this->bookingRepository->create([
+            'user_id' => $userid,
+            'course_id' => $course->id,
+            'trainer_id' => $trainer->id,
+            'status_id' => '1',
+            'bmoney_img' => '',
+            'booking_number' => $bookingNumber,
+        ]);
+        if ($bookingfinish == null) {
+            // Flash::success('Booking saved successfully.');
+            return redirect('/check');
+        }
+
+        return redirect()->route('booking.show', ['id' => $bookingfinish->id]);
     }
+
+    public function booking($id, Request $request)
+    {
+        $booking = $this->bookingRepository->makeModel()
+            ->where('id', $id)
+            ->where('user_id',  auth()->user()->id)
+            ->with(['user', 'course', 'trainer', 'status'])->first();
+        return view('_frontend.booking')->with('booking', $booking);
+    }
+
+
+    private function calculate($coursePrice, $trainerPrice)
+    {
+        $total = (int) $coursePrice + (int) $trainerPrice;
+        $totalBeforeVat = (int) $total - 0.07;
+        $deposit = (int) $total / 2;
+        $vat = '7%';
+        return compact('total', 'totalBeforeVat', 'deposit', 'vat');
+    }
+
 
     public function editprofile()
     {
         return view('_frontend.editprofile');
+    }
+
+    public function transfer()
+    {
+        return view('_frontend.transfer');
+    }
+
+    public function tabletime()
+    {
+        return view('_frontend.tabletime');
     }
 }

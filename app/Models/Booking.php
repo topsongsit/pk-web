@@ -24,7 +24,7 @@ class Booking extends Model
 {
 
     public $table = 'bookings';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -36,7 +36,8 @@ class Booking extends Model
         'course_id',
         'trainer_id',
         'status_id',
-        'bmoney_img'
+        'bmoney_img',
+        'booking_number'
     ];
 
     /**
@@ -79,7 +80,7 @@ class Booking extends Model
      **/
     public function status()
     {
-        return $this->belongsTo(\App\Models\Status::class, 'status_id');
+        return $this->belongsTo(\App\Status::class, 'status_id');
     }
 
     /**

@@ -27,9 +27,14 @@
         <hr>
             <div class="clearfix">
                 <div class="float-right">
-                    @if (request()->has(['course','trainer'])) 
-                    <a href="/finalbooking?course={{ request()->course }}&trainer={{ request()->trainer  }}" class="btn btn-primary btn-danger">ถัดไป</a>
-                    @endif
+                    @empty(!$summary) 
+                    <a href="/cancel" class="btn btn-primary btn-danger">ยกเลิก</a>
+                    <form method="POST" action="{{ url('/booking/store') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-primary btn-danger">ถัดไป</button>
+                    </form>
+                    
+                    @endempty
                 </div>
             </div>
     </div>
