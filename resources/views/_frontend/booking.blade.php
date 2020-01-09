@@ -20,12 +20,12 @@
         </div><br><br>
     </div>
     @if(request()->has('status') && request()->status == 'success')
-    <h1> Upload slip Sucess </h1>
+    <h1> อัปโหลดใบโอนเงินเรียบร้อบแล้ว </h1>
 @endif
 {{-- {{ dd($booking->user->email , $booking->course->cname) }} --}}
 @if($booking->status_id == 1)
 <div>
-        <h5>อัพโหลดใบโอนเงิน</h5>
+        <h5>อัปโหลดใบโอนเงิน</h5>
         <form action="/booking/upload" method="POST" enctype="multipart/form-data">
             @csrf
             <div>
@@ -37,9 +37,9 @@
     </div>
 
 @endif
-    </div>
     <a href="/" class="btn float-right">กลับหน้าหลัก</a>
 
+    </div>
     </header>
 
         {{-- สำเร็จการจอง --}}

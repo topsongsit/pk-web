@@ -2,7 +2,7 @@
 @section('content');
 <div class="container mt-5 text-white">
     <header style="font-family: 'Prompt', sans-serif ;"> 
-    <h3 class="text-center">ข้อมูลส่วนตัวของคุณ ... </h3>
+    <h3 class="text-center">ข้อมูลส่วนตัวของคุณ {{ \Auth::user()->name }} </h3>
     <div class="row">
         <div class="col-md-4">
             <div class="card text-dark p-3">                      
@@ -11,17 +11,18 @@
                 <a class="nav-link" href="/tabletime">ตารางเรียน</a>        
             </div>            
         </div>
-        <div class="col-md-8 text-right">
+        <div class="col-md-8">
             <div class="card text-dark p-3">                      
                 @empty(!$bookings)
                 <div class="row">
                     <div class="col-sm-4 text-left">
-                        Booking Number
+                        <strong>รหัส</strong>
                     </div>
                     <div class="col-sm-3 text-left">
-                       Course Name
+                        <strong>คอร์ส</strong>
                     </div>
                     <div class="col-sm-3 text-left">
+                        <strong>ผู้สอน</strong>
                     </div>
 
                 </div>
@@ -38,9 +39,9 @@
                             </div>
                             <div class="col-sm-2 text-left">
                                 @if ($booking->status_id == 1)
-                            <a href="{{ route('booking.show' , ['id' => $booking->id]) }}">Upload</a>
+                            <a href="{{ route('booking.show' , ['id' => $booking->id]) }}">อัปโหลด</a>
                             @else 
-                            <a>Uploaded</a>
+                            <strong><a>อัปโหลดแล้ว</a></strong>
                                 @endif
                                 
                             </div>
