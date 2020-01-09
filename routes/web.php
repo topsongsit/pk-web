@@ -49,4 +49,6 @@ Route::get('/contact', 'HomeController@contact');
 Route::get('/check', 'HomeController@check');
 Route::post('/booking/store', 'HomeController@saveBooking');
 Route::get('/booking/show/{id}', 'HomeController@booking')->name('booking.show');
+Route::post('/booking/upload', 'HomeController@uploadBooking')->name('booking.upload');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('/cancel', 'HomeController@cancel');

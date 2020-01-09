@@ -122,7 +122,7 @@ class HomeController extends Controller
         }
         $userid = auth()->user()->id;
         $date =   date('YmdHis');
-        $bookingNumber = 'BK' . sprintf("%'.015s", $date);
+        $bookingNumber = 'PK' . sprintf("%'.015s", $date);
         $bookingfinish = $this->bookingRepository->create([
             'user_id' => $userid,
             'course_id' => $course->id,
@@ -166,11 +166,39 @@ class HomeController extends Controller
 
     public function transfer()
     {
-        return view('_frontend.transfer');
+        $userid = auth()->user()->id;
+        $bookings = $this->bookingRepository->makeModel()->where('user_id', $userid)->orderBy('created_at', 'desc')->get();
+        // dd($bookings);
+        return view('_frontend.transfer')->with('bookings', $bookings);
     }
 
     public function tabletime()
     {
         return view('_frontend.tabletime');
+    }
+
+    public function cancel(Request $request)
+    {
+        $request->session()->forget('check');
+        return redirect('/course');
+    }
+
+
+    public function uploadBooking(Request $request)
+    {
+        $path = $request->file('image')->store('uploads');
+        $booking_number = $request->booking_number;
+
+        $booking = $this->bookingRepository->makeModel()->where('booking_number', $booking_number)->first();
+        if (empty($booking)) {
+            return redirect('/course');
+        }
+
+        $booking = $this->bookingRepository->update([
+            'status_id' => 2,
+            'bmoney_img' => $path,
+        ], $booking->id);
+        //
+        return redirect()->route('booking.show', ['id' => $booking->id, 'status' => 'success']);
     }
 }

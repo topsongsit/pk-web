@@ -13,7 +13,40 @@
         </div>
         <div class="col-md-8 text-right">
             <div class="card text-dark p-3">                      
+                @empty(!$bookings)
+                <div class="row">
+                    <div class="col-sm-4 text-left">
+                        Booking Number
+                    </div>
+                    <div class="col-sm-3 text-left">
+                       Course Name
+                    </div>
+                    <div class="col-sm-3 text-left">
+                    </div>
 
+                </div>
+                    @foreach ($bookings as $booking)
+                        <div class="row">
+                            <div class="col-sm-4 text-left">
+                                {{ $booking->booking_number }}
+                            </div>
+                            <div class="col-sm-3 text-left">
+                                {{ $booking->course->cname }}
+                            </div>
+                            <div class="col-sm-3 text-left">
+                                {{ $booking->trainer->tname }}
+                            </div>
+                            <div class="col-sm-2 text-left">
+                                @if ($booking->status_id == 1)
+                            <a href="{{ route('booking.show' , ['id' => $booking->id]) }}">Upload</a>
+                            @else 
+                            <a>Uploaded</a>
+                                @endif
+                                
+                            </div>
+                        </div>
+                    @endforeach
+                @endempty
             </div>       
         </div>
     </div>

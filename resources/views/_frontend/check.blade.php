@@ -2,7 +2,7 @@
 @section('content');
 <div class="container mt-5 text-white">
     <header style="font-family: 'Prompt', sans-serif ;"> 
-    <h3 class="text-center">ตรวจสอบรายการ รหัส </h3>
+    <h3 class="text-center">ตรวจสอบรายการ </h3>
     <div class="row">
         <div class="col-md-6">
             <div class="card text-dark p-3">                      
@@ -13,10 +13,12 @@
         </div>
         <div class="col-md-6 text-right">
             <div class="card text-dark p-3">                      
-            <h5 class="card-title">ราคา</h5>   
-            {{ $course->cprice }} บาท<br>
-            {{ $trainer->tprice }} บาท       
-            <h5 class="text-left">รวม</h5>                    
+            <h6 class="card-title">ราคา</h6>   
+            <h6 class="text-right"> {{ $course->cprice }} บาท </h6>
+            <h6 class="text-right"> {{ $trainer->tprice }} บาท </h6>     
+            <h6 class="text-right">ราคาก่อน Vat 7%    {{ $summary['totalBeforeVat'] }} บาท</h6>     
+            <h6 class="text-right">ราคาเต็ม           {{ $summary['total'] }} บาท</h6>                    
+            <h6 class="text-right">มัดจำจำนวน         {{ $summary['deposit'] }} บาท</h6>                                  
             </div>       
         </div>
         <div class="col-12">    
@@ -28,12 +30,11 @@
             <div class="clearfix">
                 <div class="float-right">
                     @empty(!$summary) 
-                    <a href="/cancel" class="btn btn-primary btn-danger">ยกเลิก</a>
+                    <a href="/cancel">ยกเลิก</a>
                     <form method="POST" action="{{ url('/booking/store') }}">
                         @csrf
                         <button type="submit" class="btn btn-primary btn-danger">ถัดไป</button>
-                    </form>
-                    
+                    </form>                   
                     @endempty
                 </div>
             </div>

@@ -48,7 +48,12 @@
                 @if(\Auth::check())
                 <li class="nav-link">
                     <a class="">คุณ: {{ \Auth::user()->name }}</a>
-                        <a  href="/logout">logout</a>
+                    <li>
+                    <a class="nav-link" href="/editprofile">ประวัติส่วนตัว</a>
+                    </li>
+                    <li>
+                    <a class="nav-link"  href="/logout">ออกจากระบบ</a>
+                    </li>
                     </div>
                 </li>
                 @else

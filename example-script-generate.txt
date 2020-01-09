@@ -9,3 +9,8 @@ php artisan infyom:scaffold Trainer --fromTable --tableName=trainers
 
 
 sudo php artisan serve --port=80
+
+## reset git 
+
+ git reset --hard <commit-hash>
+ git push -f origin master

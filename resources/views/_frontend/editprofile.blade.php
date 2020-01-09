@@ -14,6 +14,7 @@
         <div class="col-md-8 text-left">
             <div class="card text-dark p-3">                      
         <h5>ชื่อ</h5>
+        <input type="text" class="form-control" name="name" value="" placeholder="ชื่อ">
         <h5>นามสกุล</h5>
         <h5>เบอร์โทร</h5>
         <h5>ประวัติ</h5>
