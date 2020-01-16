@@ -5,7 +5,7 @@
                 <th>User Id</th>
         <th>Booking Id</th>
         <th>Day Id</th>
-        <th>Stages Id</th>
+        {{-- <th>Stages Id</th> --}}
         <th>Trainer Id</th>
         <th>Date</th>
                 <th colspan="3">Action</th>
@@ -16,9 +16,9 @@
             <tr>
                 <td>{{ $timetable->user_id }}</td>
             <td>{{ $timetable->booking_id }}</td>
-            <td>{{ $timetable->day_id }}</td>
-            <td>{{ $timetable->stages_id }}</td>
-            <td>{{ $timetable->trainer_id }}</td>
+            <td>{{ $timetable->day->dname }}</td>
+            {{-- <td>{{ $timetable->stages_id }}</td> --}}
+            <td>{{ $timetable->trainer->tname }}</td>
             <td>{{ $timetable->date }}</td>
                 <td>
                     {!! Form::open(['route' => ['timetables.destroy', $timetable->id], 'method' => 'delete']) !!}

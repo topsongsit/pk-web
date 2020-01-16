@@ -12,44 +12,40 @@
             </div>            
         </div>
         <div class="col-md-8">
-            <div class="card text-dark p-3">                      
-                @empty(!$bookings)
+            <div class="card text-dark p-3">         
+               <p class="text-center"> @include('flash::message')</p>
+                @empty(!$bookingusers)
                 <div class="row">
                     <div class="col-sm-4 text-left">
-                        <strong>รหัส</strong>
+                        <strong>วัน</strong>
                     </div>
-                    <div class="col-sm-3 text-left">
-                        <strong>คอร์ส</strong>
+                    <div class="col-sm-4 text-left">
+                        <strong>เวลา</strong>
                     </div>
-                    <div class="col-sm-3 text-left">
+                    <div class="col-sm-4 text-left">
                         <strong>ผู้สอน</strong>
                     </div>
 
                 </div>
-                    @foreach ($bookings as $booking)
+                    @foreach ($bookingusers as $bookinguser)
                         <div class="row">
                             <div class="col-sm-4 text-left">
-                                {{ $booking->booking_number }}
+                                {{  \Carbon\Carbon::parse($bookinguser->timetable->date)->format('Y-m-d') }}
                             </div>
-                            <div class="col-sm-3 text-left">
-                                {{ $booking->course->cname }}
+                            <div class="col-sm-4 text-left">
+                                {{ $bookinguser->timetable->day->dname }}
                             </div>
-                            <div class="col-sm-3 text-left">
-                                {{ $booking->trainer->tname }}
+                            <div class="col-sm-4 text-left">
+                                {{  $bookinguser->timetable->trainer->tname}}
                             </div>
-                            <div class="col-sm-2 text-left">
-                                @if ($booking->status_id == 1)
-                            <a href="{{ route('booking.show' , ['id' => $booking->id]) }}">อัปโหลด</a>
-                            @elseif ($booking->status_id == 3)
-                            <a href="{{ route('booking.timetable' , ['id' => $booking->id]) }}">เลือกเวลาเรียน</a>
-                            @else 
-                            <strong><a>อัปโหลดแล้ว</a></strong>
-                                @endif
-                                
-                            </div>
+                            {{-- <div class="col-sm-2 text-left">
+                                <a href="{{ route('booking.reserve' , ['id' => $timetable->id , 'bookingId' => $booking->id ]) }}">จอง</a>
+                            </div> --}}
                         </div>
                     @endforeach
                 @endempty
+
+
             </div>       
         </div>
     </div>

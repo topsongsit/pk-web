@@ -24,7 +24,7 @@ class Timetable extends Model
 {
 
     public $table = 'tabletimes';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -61,10 +61,10 @@ class Timetable extends Model
      * @var array
      */
     public static $rules = [
-        'user_id' => 'required',
-        'booking_id' => 'required',
+        // 'user_id' => 'required',
+        // 'booking_id' => 'required',
         'day_id' => 'required',
-        'stages_id' => 'required',
+        // 'stages_id' => 'required',
         'trainer_id' => 'required',
         'date' => 'required'
     ];
@@ -98,6 +98,14 @@ class Timetable extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class, 'user_id');
+        return $this->belongsTo(\App\User::class, 'user_id');
+    }
+
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function trainer()
+    {
+        return $this->belongsTo(\App\Models\Trainer::class, 'trainer_id');
     }
 }

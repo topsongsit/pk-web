@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CreateTimetableRequest;
 use App\Http\Requests\UpdateTimetableRequest;
@@ -9,6 +9,9 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Trainer;
+use App\Models\Day;
+use App\User;
 
 class TimetableController extends AppBaseController
 {
@@ -42,7 +45,20 @@ class TimetableController extends AppBaseController
      */
     public function create()
     {
-        return view('timetables.create');
+        $trainer = Trainer::all();
+        $days = Day::all();
+
+        // dd($days);
+        $trainers = $trainer->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['tname']];
+        });
+
+        $days = $days->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['dname']];
+        });
+
+     
+        return view('timetables.create')->with('trainers', $trainers)->with('days', $days);
     }
 
     /**
@@ -100,7 +116,20 @@ class TimetableController extends AppBaseController
             return redirect(route('timetables.index'));
         }
 
-        return view('timetables.edit')->with('timetable', $timetable);
+
+        $trainer = Trainer::all();
+        $days = Day::all();
+
+        // dd($days);
+        $trainers = $trainer->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['tname']];
+        });
+
+        $days = $days->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['dname']];
+        });
+
+        return view('timetables.edit')->with('timetable', $timetable)->with('trainers', $trainers)->with('days', $days);
     }
 
     /**

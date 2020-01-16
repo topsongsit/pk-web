@@ -10,7 +10,7 @@
             <div class="card text-dark p-3">              
             <a class="nav-link" href="/editprofile">ข้อมูลส่วนตัว</a>
             <a class="nav-link" href="/transfer">การจอง</a>
-            <a class="nav-link" href="/tabletime">ตารางเรียน</a>        
+            <a class="nav-link" href="/mytabletime">ตารางเรียน</a>        
             </div>            
         </div>
         <div class="col-md-8 text-left">

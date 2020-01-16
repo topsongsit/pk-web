@@ -16,3 +16,6 @@
 <li class="{{ Request::is('admin.bookingUsers*') ? 'active' : '' }}">
     <a href="{{ route('bookingUsers.index') }}"><i class="fa fa-align-justify"></i><span>Booking User</span></a>
 </li>
+<li class="{{ Request::is('admin.timetables*') ? 'active' : '' }}">
+    <a href="{{ route('timetables.index') }}"><i class="fa fa-align-justify"></i><span>Time Tables</span></a>
+</li>

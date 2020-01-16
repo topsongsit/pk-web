@@ -31,7 +31,8 @@ class BookingUser extends Model
         'user_id',
         'course_id',
         'status',
-        'booking_id'
+        'booking_id',
+        'tabletime_id'
     ];
 
     /**
@@ -73,6 +74,11 @@ class BookingUser extends Model
     public function course()
     {
         return $this->belongsTo(\App\Models\Course::class, 'course_id');
+    }
+
+    public function timetable()
+    {
+        return $this->belongsTo(\App\Models\Timetable::class, 'tabletime_id');
     }
 
     /**

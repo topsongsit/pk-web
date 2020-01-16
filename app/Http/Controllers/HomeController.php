@@ -9,6 +9,9 @@ use App\Repositories\CourseRepository;
 use App\Repositories\StageRepository;
 use App\Repositories\TrainerRepository;
 use App\Repositories\BookingRepository;
+use App\Repositories\BookingUserRepository;
+use App\Repositories\TimetableRepository;
+use Flash;
 
 class HomeController extends Controller
 {
@@ -17,14 +20,17 @@ class HomeController extends Controller
      *
      * @return void
      */
-    private $courseRepository, $stageRepository, $trainerRepository, $bookingRepository;
+    private $courseRepository, $stageRepository, $trainerRepository, $bookingRepository, $bookingUserRepository ,$timetableRepository;
 
-    public function __construct(BookingRepository $bookingRepo, CourseRepository $courseRepo, StageRepository $stageRepo, TrainerRepository $trainerRepo)
+    public function __construct(BookingRepository $bookingRepo, CourseRepository $courseRepo, StageRepository $stageRepo, TrainerRepository $trainerRepo , BookingUserRepository $bookingUserRepo ,TimetableRepository $timetableRepo)
     {
         $this->courseRepository = $courseRepo;
         $this->stageRepository = $stageRepo;
         $this->trainerRepository = $trainerRepo;
         $this->bookingRepository = $bookingRepo;
+        $this->bookingUserRepository = $bookingUserRepo;
+        $this->timetableRepository = $timetableRepo;
+
     }
 
     /**
@@ -181,9 +187,12 @@ class HomeController extends Controller
         return view('_frontend.transfer')->with('bookings', $bookings);
     }
 
-    public function tabletime()
+    public function mytabletime()
     {
-        return view('_frontend.tabletime');
+        $bookingusers = $this->bookingUserRepository->makeModel()
+        ->where('status',1)
+        ->where('user_id', auth()->user()->id)->get();
+        return view('_frontend.mytabletime')->with('bookingusers' ,$bookingusers);
     }
 
     public function cancel(Request $request)
@@ -209,5 +218,68 @@ class HomeController extends Controller
         ], $booking->id);
         //
         return redirect()->route('booking.show', ['id' => $booking->id, 'status' => 'success']);
+    }
+
+    public function timetable($id,Request $request){
+
+        $booking = $this->bookingRepository->makeModel()
+        ->where('id', $id)
+        ->where('user_id', auth()->user()->id)->first();
+
+        $trainer = $booking->trainer;
+
+        $count = $this->bookingUserRepository->makeModel()
+        ->where('course_id', $booking->course_id)
+        ->where('booking_id',$booking->id)
+        ->where('status',0)
+        ->where('user_id', auth()->user()->id)->count();
+
+        $timetable = $this->timetableRepository->makeModel()
+        ->where('trainer_id' ,$trainer->id)
+        ->where('user_id' ,null)->get();
+
+        return view('_frontend.tabletime')->with('count', $count)->with('timetable',$timetable)->with('booking',$booking);
+
+    }
+
+    public function reserve($timeTableId, $bookingId, Request $request) {
+        $userId = auth()->user()->id;
+
+        // validate permission of booking and user
+        //
+        $booking = $this->bookingRepository->makeModel()
+            ->where('id', $bookingId)
+            ->where('user_id', auth()->user()->id)->first();
+        if(!$booking) {
+            return back();
+        }
+        //
+        $timetable = $this->timetableRepository->makeModel()->where('id' ,$timeTableId)->first();
+        // dd($timetable);
+        if(!$timetable) {
+            // dd('timetable not found');
+            return back();
+        }
+
+        $result = $this->timetableRepository->update([
+            'user_id' => $userId,
+            'booking_id' => $bookingId,
+        ], $timetable->id);
+        
+
+        if($result) {
+            $bookingUser = $this->bookingUserRepository->makeModel()
+                ->where('course_id', $booking->course_id)
+                ->where('booking_id',$booking->id)
+                ->where('status',0)
+                ->where('user_id', $userId)->first();
+
+                //dd(  $bookingUser , $booking); 
+            $this->bookingUserRepository->update(['status' => 1 , 'tabletime_id' =>  $timetable->id] ,  $bookingUser->id);
+        }
+
+        Flash::success('ทำการจองสำเร็จ');
+
+        return redirect()->route('booking.timetable',['id'=> $booking->id]);
     }
 }
