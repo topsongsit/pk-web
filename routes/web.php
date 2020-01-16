@@ -32,6 +32,9 @@ Route::group([
     Route::resource('stages', 'StageController');
     Route::resource('trainers', 'TrainerController');
     Route::resource('bookings', 'BookingController');
+
+Route::resource('bookingUsers', 'BookingUserController');
+
 });
 
 // ของ user ปกติ
@@ -52,3 +55,6 @@ Route::get('/booking/show/{id}', 'HomeController@booking')->name('booking.show')
 Route::post('/booking/upload', 'HomeController@uploadBooking')->name('booking.upload');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/cancel', 'HomeController@cancel');
+
+
+Route::resource('timetables', 'TimetableController');

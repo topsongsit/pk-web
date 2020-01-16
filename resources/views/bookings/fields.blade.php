@@ -16,11 +16,21 @@
     {!! Form::number('trainer_id', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Status Id Field -->
+@if(!empty($booking))
+    <!-- Status Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('status_id', 'Status Id:') !!}
-    {!! Form::number('status_id', null, ['class' => 'form-control']) !!}
+    {!! Form::select('status_id', $status, $booking->status_id, ['class' => 'form-control']) !!}
 </div>
+@else
+<div class="form-group col-sm-6">
+    {!! Form::label('status_id', 'Status Id:') !!}
+    {!! Form::select('status_id', $status, null, ['class' => 'form-control']) !!}
+</div>
+@endif
+
+
+
 
 <!-- Bmoney Img Field -->
 <div class="form-group col-sm-6">

@@ -5,19 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\CreateBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
 use App\Repositories\BookingRepository;
+use App\Repositories\BookingUserRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Status;
 
 class BookingController extends AppBaseController
 {
     /** @var  BookingRepository */
     private $bookingRepository;
 
-    public function __construct(BookingRepository $bookingRepo)
+    private $bookingUserRepository;
+
+    public function __construct(BookingRepository $bookingRepo, BookingUserRepository $bookingUserRepo)
     {
         $this->bookingRepository = $bookingRepo;
+        $this->bookingUserRepository = $bookingUserRepo;
     }
 
     /**
@@ -42,7 +47,13 @@ class BookingController extends AppBaseController
      */
     public function create()
     {
-        return view('bookings.create');
+        $status = Status::all();
+
+        $status = $status->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['sname']];
+        });
+
+        return view('bookings.create')->with('status', $status);
     }
 
     /**
@@ -100,7 +111,13 @@ class BookingController extends AppBaseController
             return redirect(route('bookings.index'));
         }
 
-        return view('bookings.edit')->with('booking', $booking);
+        $status = Status::all();
+
+        $status = $status->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['sname']];
+        });
+
+        return view('bookings.edit')->with('booking', $booking)->with('status', $status);
     }
 
     /**
@@ -122,6 +139,19 @@ class BookingController extends AppBaseController
         }
 
         $booking = $this->bookingRepository->update($request->all(), $id);
+
+        if ($booking->status_id == 3) {
+            // insert data to booking_user
+            $day = $booking->course->cday;
+            for ($i = 0; $i < $day; $i++) {
+                $bookingUser = $this->bookingUserRepository->create([
+                    'user_id' => $booking->user_id,
+                    'course_id' => $booking->course_id,
+                    'status' => 0,
+                    'booking_id' => $booking->id
+                ]);
+            }
+        }
 
         Flash::success('Booking updated successfully.');
 

@@ -6,7 +6,7 @@ Example command
 php artisan infyom:scaffold Course --fromTable --tableName=courses  
 php artisan infyom:scaffold Booking --fromTable --tableName=bookings
 php artisan infyom:scaffold Trainer --fromTable --tableName=trainers
-
+php artisan infyom:scaffold Timetable --fromTable --tableName=tabletimes
 
 sudo php artisan serve --port=80
 

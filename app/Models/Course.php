@@ -19,7 +19,7 @@ class Course extends Model
 {
 
     public $table = 'courses';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -30,7 +30,8 @@ class Course extends Model
         'cname',
         'cdetail',
         'cimg',
-        'cprice'
+        'cprice',
+        'cday'
     ];
 
     /**

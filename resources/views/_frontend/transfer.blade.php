@@ -3,7 +3,7 @@
 <div class="container mt-5 text-white">
     <header style="font-family: 'Prompt', sans-serif ;"> 
     <h3 class="text-center">ข้อมูลส่วนตัวของคุณ {{ \Auth::user()->name }} </h3>
-    <div class="row">
+    <br><div class="row">
         <div class="col-md-4">
             <div class="card text-dark p-3">                      
                 <a class="nav-link" href="/editprofile">ข้อมูลส่วนตัว</a>

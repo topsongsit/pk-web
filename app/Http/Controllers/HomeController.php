@@ -141,11 +141,20 @@ class HomeController extends Controller
 
     public function booking($id, Request $request)
     {
+        $check = $request->session()->get('check', []);
+        if (count($check) == 0) {
+            return redirect('/course');
+        }
+       
+        $course = $this->courseRepository->find($check['course']);
+        $trainer = $this->trainerRepository->find($check['trainner']);
+        $summary = $this->calculate($course->cprice, $trainer->tprice);
+
         $booking = $this->bookingRepository->makeModel()
             ->where('id', $id)
             ->where('user_id',  auth()->user()->id)
             ->with(['user', 'course', 'trainer', 'status'])->first();
-        return view('_frontend.booking')->with('booking', $booking);
+        return view('_frontend.booking')->with('booking', $booking)->with('course', $course)->with('trainer', $trainer)->with('summary', $summary);
     }
 
 

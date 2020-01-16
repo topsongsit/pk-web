@@ -12,3 +12,7 @@
 <li class="{{ Request::is('admin.bookings*') ? 'active' : '' }}">
     <a href="{{ route('bookings.index') }}"><i class="fa fa-align-justify"></i><span>Booking</span></a>
 </li>
+
+<li class="{{ Request::is('admin.bookingUsers*') ? 'active' : '' }}">
+    <a href="{{ route('bookingUsers.index') }}"><i class="fa fa-align-justify"></i><span>Booking User</span></a>
+</li>

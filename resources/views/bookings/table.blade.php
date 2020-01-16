@@ -16,7 +16,7 @@
                 <td>{{ $booking->user_id }}</td>
             <td>{{ $booking->course_id }}</td>
             <td>{{ $booking->trainer_id }}</td>
-            <td>{{ $booking->status_id }}</td>
+            <td>{{ $booking->status->sname }}</td>
             <td>{{ $booking->bmoney_img }}</td>
                 <td>
                     {!! Form::open(['route' => ['bookings.destroy', $booking->id], 'method' => 'delete']) !!}
