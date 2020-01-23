@@ -20,9 +20,9 @@ class HomeController extends Controller
      *
      * @return void
      */
-    private $courseRepository, $stageRepository, $trainerRepository, $bookingRepository, $bookingUserRepository ,$timetableRepository;
+    private $courseRepository, $stageRepository, $trainerRepository, $bookingRepository, $bookingUserRepository, $timetableRepository;
 
-    public function __construct(BookingRepository $bookingRepo, CourseRepository $courseRepo, StageRepository $stageRepo, TrainerRepository $trainerRepo , BookingUserRepository $bookingUserRepo ,TimetableRepository $timetableRepo)
+    public function __construct(BookingRepository $bookingRepo, CourseRepository $courseRepo, StageRepository $stageRepo, TrainerRepository $trainerRepo, BookingUserRepository $bookingUserRepo, TimetableRepository $timetableRepo)
     {
         $this->courseRepository = $courseRepo;
         $this->stageRepository = $stageRepo;
@@ -30,7 +30,6 @@ class HomeController extends Controller
         $this->bookingRepository = $bookingRepo;
         $this->bookingUserRepository = $bookingUserRepo;
         $this->timetableRepository = $timetableRepo;
-
     }
 
     /**
@@ -151,7 +150,7 @@ class HomeController extends Controller
         if (count($check) == 0) {
             return redirect('/course');
         }
-       
+
         $course = $this->courseRepository->find($check['course']);
         $trainer = $this->trainerRepository->find($check['trainner']);
         $summary = $this->calculate($course->cprice, $trainer->tprice);
@@ -190,9 +189,9 @@ class HomeController extends Controller
     public function mytabletime()
     {
         $bookingusers = $this->bookingUserRepository->makeModel()
-        ->where('status',1)
-        ->where('user_id', auth()->user()->id)->get();
-        return view('_frontend.mytabletime')->with('bookingusers' ,$bookingusers);
+            ->where('status', 1)
+            ->where('user_id', auth()->user()->id)->get();
+        return view('_frontend.mytabletime')->with('bookingusers', $bookingusers);
     }
 
     public function cancel(Request $request)
@@ -220,29 +219,30 @@ class HomeController extends Controller
         return redirect()->route('booking.show', ['id' => $booking->id, 'status' => 'success']);
     }
 
-    public function timetable($id,Request $request){
+    public function timetable($id, Request $request)
+    {
 
         $booking = $this->bookingRepository->makeModel()
-        ->where('id', $id)
-        ->where('user_id', auth()->user()->id)->first();
+            ->where('id', $id)
+            ->where('user_id', auth()->user()->id)->first();
 
         $trainer = $booking->trainer;
 
         $count = $this->bookingUserRepository->makeModel()
-        ->where('course_id', $booking->course_id)
-        ->where('booking_id',$booking->id)
-        ->where('status',0)
-        ->where('user_id', auth()->user()->id)->count();
+            ->where('course_id', $booking->course_id)
+            ->where('booking_id', $booking->id)
+            ->where('status', 0)
+            ->where('user_id', auth()->user()->id)->count();
 
         $timetable = $this->timetableRepository->makeModel()
-        ->where('trainer_id' ,$trainer->id)
-        ->where('user_id' ,null)->get();
+            ->where('trainer_id', $trainer->id)
+            ->where('user_id', null)->get();
 
-        return view('_frontend.tabletime')->with('count', $count)->with('timetable',$timetable)->with('booking',$booking);
-
+        return view('_frontend.tabletime')->with('count', $count)->with('timetable', $timetable)->with('booking', $booking);
     }
 
-    public function reserve($timeTableId, $bookingId, Request $request) {
+    public function reserve($timeTableId, $bookingId, Request $request)
+    {
         $userId = auth()->user()->id;
 
         // validate permission of booking and user
@@ -250,13 +250,13 @@ class HomeController extends Controller
         $booking = $this->bookingRepository->makeModel()
             ->where('id', $bookingId)
             ->where('user_id', auth()->user()->id)->first();
-        if(!$booking) {
+        if (!$booking) {
             return back();
         }
         //
-        $timetable = $this->timetableRepository->makeModel()->where('id' ,$timeTableId)->first();
+        $timetable = $this->timetableRepository->makeModel()->where('id', $timeTableId)->first();
         // dd($timetable);
-        if(!$timetable) {
+        if (!$timetable) {
             // dd('timetable not found');
             return back();
         }
@@ -265,21 +265,21 @@ class HomeController extends Controller
             'user_id' => $userId,
             'booking_id' => $bookingId,
         ], $timetable->id);
-        
 
-        if($result) {
+
+        if ($result) {
             $bookingUser = $this->bookingUserRepository->makeModel()
                 ->where('course_id', $booking->course_id)
-                ->where('booking_id',$booking->id)
-                ->where('status',0)
+                ->where('booking_id', $booking->id)
+                ->where('status', 0)
                 ->where('user_id', $userId)->first();
 
-                //dd(  $bookingUser , $booking); 
-            $this->bookingUserRepository->update(['status' => 1 , 'tabletime_id' =>  $timetable->id] ,  $bookingUser->id);
+            //dd(  $bookingUser , $booking); 
+            $this->bookingUserRepository->update(['status' => 1, 'tabletime_id' =>  $timetable->id],  $bookingUser->id);
         }
 
         Flash::success('ทำการจองสำเร็จ');
 
-        return redirect()->route('booking.timetable',['id'=> $booking->id]);
+        return redirect()->route('booking.timetable', ['id' => $booking->id]);
     }
 }

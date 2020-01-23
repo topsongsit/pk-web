@@ -2,22 +2,23 @@
     <table class="table" id="bookings-table">
         <thead>
             <tr>
-                <th>User Id</th>
-        <th>Course Id</th>
-        <th>Trainer Id</th>
-        <th>Status Id</th>
-        <th>Money Img</th>
+                <th>User</th>
+        <th>Course</th>
+        <th>Trainer</th>
+        <th>Status</th>
+        <th>Money Image</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach($bookings as $booking)
             <tr>
-                <td>{{ $booking->user_id }}</td>
-            <td>{{ $booking->course_id }}</td>
-            <td>{{ $booking->trainer_id }}</td>
+                <td>{{ $booking->user->name }}</td>
+            <td>{{ $booking->course->cname }}</td>
+            <td>{{ $booking->trainer->tname }}</td>
             <td>{{ $booking->status->sname }}</td>
-            <td>{{ $booking->bmoney_img }}</td>
+            <td> <img src="{{url($booking->bmoney_img) }}" width="100"> </td>
+            {{-- <td>{{ $booking->bmoney_img }}</td> --}}
                 <td>
                     {!! Form::open(['route' => ['bookings.destroy', $booking->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

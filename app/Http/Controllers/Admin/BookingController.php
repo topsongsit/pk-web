@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use App\Status;
+use App\Models\Trainer;
+use App\Models\Course;
+use App\User;
+
 
 class BookingController extends AppBaseController
 {
@@ -47,13 +51,30 @@ class BookingController extends AppBaseController
      */
     public function create()
     {
+        $trainer = Trainer::all();
+        $courses = Course::all();
         $status = Status::all();
+        $user = User::all();
+
 
         $status = $status->mapWithKeys(function ($item) {
             return [$item['id'] => $item['sname']];
         });
 
-        return view('bookings.create')->with('status', $status);
+        // dd($days);
+        $trainers = $trainer->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['tname']];
+        });
+
+        $courses = $courses->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['cname']];
+        });
+
+        $users = $user->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['name']];
+        });
+
+        return view('bookings.create')->with('status', $status)->with('trainers', $trainers)->with('courses', $courses)->with('users', $users);
     }
 
     /**
@@ -66,8 +87,6 @@ class BookingController extends AppBaseController
     public function store(CreateBookingRequest $request)
     {
         $input = $request->all();
-
-        $booking = $this->bookingRepository->create($input);
 
         Flash::success('Booking saved successfully.');
 
@@ -111,13 +130,31 @@ class BookingController extends AppBaseController
             return redirect(route('bookings.index'));
         }
 
+        $trainer = Trainer::all();
+        $courses = Course::all();
         $status = Status::all();
+        $user = User::all();
+
 
         $status = $status->mapWithKeys(function ($item) {
             return [$item['id'] => $item['sname']];
         });
 
-        return view('bookings.edit')->with('booking', $booking)->with('status', $status);
+        // dd($days);
+        $trainers = $trainer->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['tname']];
+        });
+
+        $courses = $courses->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['cname']];
+        });
+
+        $users = $user->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['name']];
+        });
+
+
+        return view('bookings.edit')->with('booking', $booking)->with('status', $status)->with('trainers', $trainers)->with('courses', $courses)->with('users', $users);
     }
 
     /**
@@ -152,6 +189,7 @@ class BookingController extends AppBaseController
                 ]);
             }
         }
+
 
         Flash::success('Booking updated successfully.');
 

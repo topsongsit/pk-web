@@ -2,11 +2,11 @@
     <table class="table" id="timetables-table">
         <thead>
             <tr>
-                <th>User Id</th>
-        <th>Booking Id</th>
-        <th>Day Id</th>
+                {{-- <th>User Id</th>
+        <th>Booking Id</th> --}}
+        <th>Day</th>
         {{-- <th>Stages Id</th> --}}
-        <th>Trainer Id</th>
+        <th>Trainer</th>
         <th>Date</th>
                 <th colspan="3">Action</th>
             </tr>
@@ -14,8 +14,8 @@
         <tbody>
         @foreach($timetables as $timetable)
             <tr>
-                <td>{{ $timetable->user_id }}</td>
-            <td>{{ $timetable->booking_id }}</td>
+                {{-- <td>{{ $timetable->user_id }}</td>
+            <td>{{ $timetable->booking_id }}</td> --}}
             <td>{{ $timetable->day->dname }}</td>
             {{-- <td>{{ $timetable->stages_id }}</td> --}}
             <td>{{ $timetable->trainer->tname }}</td>

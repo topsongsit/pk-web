@@ -46,6 +46,9 @@
                 @endempty
 
 
+                <br><div class="text-right">
+                    <a href="/transfer">ย้อนกลับ</a>
+                </div>
             </div>       
         </div>
     </div>

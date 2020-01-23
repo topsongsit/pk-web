@@ -9,6 +9,10 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Booking;
+use App\Models\Course;
+use App\User;
+
 
 class BookingUserController extends AppBaseController
 {
@@ -100,7 +104,25 @@ class BookingUserController extends AppBaseController
             return redirect(route('bookingUsers.index'));
         }
 
-        return view('booking_users.edit')->with('bookingUser', $bookingUser);
+        $bookings = Booking::all();
+        $courses = Course::all();
+        $user = User::all();
+
+
+        // dd($days);
+        $bookings = $bookings->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['bname']];
+        });
+
+        $courses = $courses->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['cname']];
+        });
+
+        $users = $user->mapWithKeys(function ($item) {
+            return [$item['id'] => $item['name']];
+        });
+
+        return view('booking_users.edit')->with('bookingUser', $bookingUser)->with('bookings', $bookings)->with('courses', $courses)->with('users', $users);
     }
 
     /**

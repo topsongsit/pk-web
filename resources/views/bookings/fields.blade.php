@@ -1,40 +1,38 @@
 <!-- User Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::number('user_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('user_id', 'User:') !!}
+    {!! Form::select('user_id', $users,  $bookings->user_id ?? null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Course Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('course_id', 'Course Id:') !!}
-    {!! Form::number('course_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('course_id', 'Course:') !!}
+    {!! Form::select('course_id', $courses,  $bookings->course_id ?? null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Trainer Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('trainer_id', 'Trainer Id:') !!}
-    {!! Form::number('trainer_id', null, ['class' => 'form-control']) !!}
+    {!! Form::label('trainer_id', 'Trainer:') !!}
+    {!! Form::select('trainer_id', $trainers,  $bookings->trainer_id ?? null, ['class' => 'form-control']) !!}
 </div>
 
 @if(!empty($booking))
     <!-- Status Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('status_id', 'Status Id:') !!}
+    {!! Form::label('status_id', 'Status:') !!}
     {!! Form::select('status_id', $status, $booking->status_id, ['class' => 'form-control']) !!}
 </div>
 @else
 <div class="form-group col-sm-6">
-    {!! Form::label('status_id', 'Status Id:') !!}
+    {!! Form::label('status_id', 'Status:') !!}
     {!! Form::select('status_id', $status, null, ['class' => 'form-control']) !!}
 </div>
 @endif
 
 
-
-
 <!-- Bmoney Img Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('bmoney_img', 'Bmoney Img:') !!}
+    {!! Form::label('bmoney_img', 'Money Image:') !!}
     {!! Form::text('bmoney_img', null, ['class' => 'form-control']) !!}
 </div>
 

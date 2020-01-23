@@ -32,7 +32,6 @@ Route::group([
     Route::resource('stages', 'StageController');
     Route::resource('trainers', 'TrainerController');
     Route::resource('bookings', 'BookingController');
-
     Route::resource('bookingUsers', 'BookingUserController');
     Route::resource('timetables', 'TimetableController');
 });
@@ -55,7 +54,7 @@ Route::get('/check', 'HomeController@check');
 Route::post('/booking/store', 'HomeController@saveBooking');
 Route::get('/booking/show/{id}', 'HomeController@booking')->name('booking.show');
 Route::post('/booking/upload', 'HomeController@uploadBooking')->name('booking.upload');
-Route::get('/booking/timetable/{id}', 'HomeController@timetable')->name('booking.timetable');
+Route::get('/transfer/timetable/{id}', 'HomeController@timetable')->name('booking.timetable');
 Route::get('/booking/reserve/{id}/booking/{bookingId}', 'HomeController@reserve')->name('booking.reserve');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

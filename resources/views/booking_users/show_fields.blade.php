@@ -1,12 +1,12 @@
 <!-- User Id Field -->
 <div class="form-group">
-    {!! Form::label('user_id', 'User Id:') !!}
+    {!! Form::label('user_id', 'User:') !!}
     <p>{{ $bookingUser->user_id }}</p>
 </div>
 
 <!-- Course Id Field -->
 <div class="form-group">
-    {!! Form::label('course_id', 'Course Id:') !!}
+    {!! Form::label('course_id', 'Course:') !!}
     <p>{{ $bookingUser->course_id }}</p>
 </div>
 
@@ -18,7 +18,7 @@
 
 <!-- Booking Id Field -->
 <div class="form-group">
-    {!! Form::label('booking_id', 'Booking Id:') !!}
+    {!! Form::label('booking_id', 'Booking:') !!}
     <p>{{ $bookingUser->booking_id }}</p>
 </div>
 

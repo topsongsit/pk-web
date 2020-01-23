@@ -12,13 +12,13 @@
 
 <!-- Cimg Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('cimg', 'Cimg:') !!}
+    {!! Form::label('cimg', 'Img:') !!}
     {!! Form::file('cimg',['class' => 'form-control']) !!}
 </div>
 
 <!-- Cprice Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('cprice', 'Cprice:') !!}
+    {!! Form::label('cprice', 'Price:') !!}
     {!! Form::number('cprice', null, ['class' => 'form-control']) !!}
 </div>
 

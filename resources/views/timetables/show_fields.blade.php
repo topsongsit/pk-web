@@ -1,4 +1,4 @@
-<!-- User Id Field -->
+{{-- <!-- User Id Field -->
 <div class="form-group">
     {!! Form::label('user_id', 'User Id:') !!}
     <p>{{ $timetable->user_id }}</p>
@@ -8,23 +8,23 @@
 <div class="form-group">
     {!! Form::label('booking_id', 'Booking Id:') !!}
     <p>{{ $timetable->booking_id }}</p>
-</div>
+</div> --}}
 
 <!-- Day Id Field -->
 <div class="form-group">
-    {!! Form::label('day_id', 'Day Id:') !!}
+    {!! Form::label('day_id', 'Day:') !!}
     <p>{{ $timetable->day_id }}</p>
 </div>
-
+{{-- 
 <!-- Stages Id Field -->
 <div class="form-group">
     {!! Form::label('stages_id', 'Stages Id:') !!}
     <p>{{ $timetable->stages_id }}</p>
-</div>
+</div> --}}
 
 <!-- Trainer Id Field -->
 <div class="form-group">
-    {!! Form::label('trainer_id', 'Trainer Id:') !!}
+    {!! Form::label('trainer_id', 'Trainer:') !!}
     <p>{{ $timetable->trainer_id }}</p>
 </div>
 

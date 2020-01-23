@@ -1,30 +1,30 @@
 <!-- Tname Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('tname', 'Tname:') !!}
+    {!! Form::label('tname', 'Name:') !!}
     {!! Form::text('tname', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Tdetail Field -->
 <div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('tdetail', 'Tdetail:') !!}
+    {!! Form::label('tdetail', 'Detail:') !!}
     {!! Form::textarea('tdetail', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Timg Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('timg', 'Timg:') !!}
+    {!! Form::label('timg', 'Img:') !!}
     {!! Form::file('timg',['class' => 'form-control']) !!}
 </div>
 
 <!-- Tcategory Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('tcategory', 'Tcategory:') !!}
+    {!! Form::label('tcategory', 'Category:') !!}
     {!! Form::text('tcategory', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Tprice Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('tprice', 'Tprice:') !!}
+    {!! Form::label('tprice', 'Price:') !!}
     {!! Form::number('tprice', null, ['class' => 'form-control']) !!}
 </div>
 

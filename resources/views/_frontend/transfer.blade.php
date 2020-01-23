@@ -34,18 +34,18 @@
                             <div class="col-sm-3 text-left">
                                 {{ $booking->course->cname }}
                             </div>
-                            <div class="col-sm-3 text-left">
+                            <div class="col-sm-2 text-left">
                                 {{ $booking->trainer->tname }}
                             </div>
-                            <div class="col-sm-2 text-left">
+                            <div class="col-sm-3 text-left">
                                 @if ($booking->status_id == 1)
-                            <a href="{{ route('booking.show' , ['id' => $booking->id]) }}">อัปโหลด</a>
+                            <a href="{{ route('booking.show' , ['id' => $booking->id]) }}">อัปโหลด</a> 
+                            <a>| ยกเลิก</a>
                             @elseif ($booking->status_id == 3)
                             <a href="{{ route('booking.timetable' , ['id' => $booking->id]) }}">เลือกเวลาเรียน</a>
                             @else 
-                            <strong><a>อัปโหลดแล้ว</a></strong>
-                                @endif
-                                
+                            <strong><a>รอดำเนินการ</a></strong>
+                                @endif                                
                             </div>
                         </div>
                     @endforeach

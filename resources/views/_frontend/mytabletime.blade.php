@@ -13,41 +13,43 @@
         </div>
         <div class="col-md-8">
             <div class="card text-dark p-3">         
-               <p class="text-center"> @include('flash::message')</p>
                 @empty(!$bookingusers)
                 <div class="row">
-                    <div class="col-sm-4 text-left">
+                    <div class="col-sm-3 text-left">
                         <strong>วัน</strong>
                     </div>
                     <div class="col-sm-4 text-left">
                         <strong>เวลา</strong>
                     </div>
-                    <div class="col-sm-4 text-left">
+                    <div class="col-sm-2 text-left">
                         <strong>ผู้สอน</strong>
                     </div>
 
                 </div>
                     @foreach ($bookingusers as $bookinguser)
                         <div class="row">
-                            <div class="col-sm-4 text-left">
+                            <div class="col-sm-3 text-left">
                                 {{  \Carbon\Carbon::parse($bookinguser->timetable->date)->format('Y-m-d') }}
                             </div>
                             <div class="col-sm-4 text-left">
                                 {{ $bookinguser->timetable->day->dname }}
                             </div>
-                            <div class="col-sm-4 text-left">
+                            <div class="col-sm-2 text-left">
                                 {{  $bookinguser->timetable->trainer->tname}}
                             </div>
-                            {{-- <div class="col-sm-2 text-left">
-                                <a href="{{ route('booking.reserve' , ['id' => $timetable->id , 'bookingId' => $booking->id ]) }}">จอง</a>
-                            </div> --}}
+                            <div class="col-sm-3 text-left">
+                                ลบ
+                            </div>
                         </div>
                     @endforeach
                 @endempty
+                <br><div>
+                    <a>เหลือเวลาเรียน</a> ... <a>ครั้ง</a>
+                </div>
+            </div>  
 
-
-            </div>       
         </div>
+        
     </div>
     </div>
     </header>
