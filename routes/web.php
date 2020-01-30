@@ -39,8 +39,9 @@ Route::group([
 // ของ user ปกติ
 Route::get('/', 'HomeController@index');
 Route::get('/editprofile', 'HomeController@editprofile');
-Route::get('/transfer', 'HomeController@transfer');
-Route::get('/mytabletime', 'HomeController@mytabletime');
+Route::get('/transfer', 'HomeController@transfer')->name('transfer');
+Route::get('/mytabletime', 'HomeController@mytabletime')->name('mytabletime');
+Route::get('/mytabletime/cancel/{id}', 'HomeController@mytabletimeCancel');
 Route::get('/home', 'HomeController@index');
 Route::get('/course', 'HomeController@course');
 Route::get('/trainer', 'HomeController@trainer');
@@ -53,6 +54,7 @@ Route::get('/check', 'HomeController@check');
 
 Route::post('/booking/store', 'HomeController@saveBooking');
 Route::get('/booking/show/{id}', 'HomeController@booking')->name('booking.show');
+Route::get('/booking/cancel/{id}', 'HomeController@bookingCancel')->name('booking.cancel');
 Route::post('/booking/upload', 'HomeController@uploadBooking')->name('booking.upload');
 Route::get('/transfer/timetable/{id}', 'HomeController@timetable')->name('booking.timetable');
 Route::get('/booking/reserve/{id}/booking/{bookingId}', 'HomeController@reserve')->name('booking.reserve');

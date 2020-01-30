@@ -40,7 +40,7 @@
                             <div class="col-sm-3 text-left">
                                 @if ($booking->status_id == 1)
                             <a href="{{ route('booking.show' , ['id' => $booking->id]) }}">อัปโหลด</a> 
-                            <a>| ยกเลิก</a>
+                            <a href="javascript:CancelBooking({{ $booking->id }})" >ยกเลิก</a> 
                             @elseif ($booking->status_id == 3)
                             <a href="{{ route('booking.timetable' , ['id' => $booking->id]) }}">เลือกเวลาเรียน</a>
                             @else 
@@ -55,4 +55,17 @@
     </div>
     </div>
     </header>
+    
+@endsection
+
+
+
+@section('scripts')
+<script type="text/javascript">
+    function CancelBooking(id) {
+        if(confirm('คุณต้องการยกเลิกใช่ไหม?')){
+            window.location = '/booking/cancel/'+id
+        }
+    }
+</script>
 @endsection

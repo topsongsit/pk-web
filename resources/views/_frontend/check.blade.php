@@ -9,8 +9,8 @@
             <h5 class="card-title">รายการ</h5> 
             <h6 class="text-left">{{ $course->cname }}</h6>     
             <h6 class="text-left">{{ $trainer->tname }}</h6> 
-            <br><h6 class="text-left">ราคาก่อน Vat 7%    </h6>     
-            <h6 class="text-left">ราคาเต็ม           </h6>                    
+            {{-- <br><h6 class="text-left">ราคาก่อน Vat 7%    </h6>      --}}
+            <br><h6 class="text-left">ราคาเต็ม           </h6>                    
             <h6 class="text-left">มัดจำจำนวน         </h6>                                  
             </div>            
         </div>
@@ -19,13 +19,13 @@
             <h5 class="card-title">ราคา</h5>   
             <h6 class="text-right"> {{ $course->cprice }} บาท </h6>
             <h6 class="text-right"> {{ $trainer->tprice }} บาท </h6>
-            <br><h6 class="text-right">  {{ $summary['totalBeforeVat'] }} บาท</h6>     
-            <h6 class="text-right">  {{ $summary['total'] }} บาท</h6>                    
+            {{-- <br><h6 class="text-right">  {{ $summary['totalBeforeVat'] }} บาท</h6>      --}}
+            <br><h6 class="text-right">  {{ $summary['total'] }} บาท</h6>                    
             <h6 class="text-right">  {{ $summary['deposit'] }} บาท</h6>                                  
             </div>       
         </div>
         <div class="col-12">    
-            <h5>เงื่อนไข : *โอนค่ามัดจำ 50% และจ่ายที่ค่าย 50%</h5>
+            <br><h5>เงื่อนไข : *โอนค่ามัดจำ 50% และจ่ายที่ค่าย 50%</h5>
             <input type="checkbox" name="check"> ฉันได้ตรวจสอบในซื้อการคอร์สเรียนและผู้สอนเรียบร้อยแล้ว
             </div> 
         </div>

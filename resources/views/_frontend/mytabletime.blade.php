@@ -37,14 +37,16 @@
                             <div class="col-sm-2 text-left">
                                 {{  $bookinguser->timetable->trainer->tname}}
                             </div>
+                            @if($bookinguser->cancel)
                             <div class="col-sm-3 text-left">
-                                ลบ
+                               <a href="javascript:CancelTimeTable({{ $bookinguser->id }})">ยกเลิก</a> 
                             </div>
+                            @endif
                         </div>
                     @endforeach
                 @endempty
                 <br><div>
-                    <a>เหลือเวลาเรียน</a> ... <a>ครั้ง</a>
+                    <a>เหลือเวลาเรียน</a> {{ $remain }} <a>ครั้ง</a>
                 </div>
             </div>  
 
@@ -53,4 +55,13 @@
     </div>
     </div>
     </header>
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    function CancelTimeTable(id) {
+        if(confirm('คุณต้องการยกเลิกใช่ไหม?')){
+            window.location = '/mytabletime/cancel/'+id
+        }
+    }
+</script>
 @endsection

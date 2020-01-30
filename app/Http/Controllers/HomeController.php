@@ -12,6 +12,7 @@ use App\Repositories\BookingRepository;
 use App\Repositories\BookingUserRepository;
 use App\Repositories\TimetableRepository;
 use Flash;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -162,6 +163,26 @@ class HomeController extends Controller
         return view('_frontend.booking')->with('booking', $booking)->with('course', $course)->with('trainer', $trainer)->with('summary', $summary);
     }
 
+    public function bookingCancel($id, Request $request)
+    {
+
+        $booking = $this->bookingRepository->makeModel()
+            ->where('id', $id)
+            ->where('status_id', 1)
+            ->where('user_id',  auth()->user()->id)->first();
+
+        if ($booking == null) {
+            return redirect()->back();
+        }
+
+        $booking = $this->bookingRepository->update([
+            'deleted_at' => Carbon::now(),
+        ], $booking->id);
+
+        return redirect()->route('transfer');
+        // return view('_frontend.booking')->with('booking', $booking)->with('course', $course)->with('trainer', $trainer)->with('summary', $summary);
+    }
+
 
     private function calculate($coursePrice, $trainerPrice)
     {
@@ -181,7 +202,10 @@ class HomeController extends Controller
     public function transfer()
     {
         $userid = auth()->user()->id;
-        $bookings = $this->bookingRepository->makeModel()->where('user_id', $userid)->orderBy('created_at', 'desc')->get();
+        $bookings = $this->bookingRepository->makeModel()
+            ->where('user_id', $userid)
+            ->whereNull('deleted_at')
+            ->orderBy('created_at', 'desc')->get();
         // dd($bookings);
         return view('_frontend.transfer')->with('bookings', $bookings);
     }
@@ -191,7 +215,51 @@ class HomeController extends Controller
         $bookingusers = $this->bookingUserRepository->makeModel()
             ->where('status', 1)
             ->where('user_id', auth()->user()->id)->get();
-        return view('_frontend.mytabletime')->with('bookingusers', $bookingusers);
+        // dd(count($bookingusers));
+        $remain = $this->bookingUserRepository->makeModel()
+            ->where('status', 0)
+            ->where('user_id', auth()->user()->id)->count();
+
+        if (count($bookingusers) == 0) {
+            return view('_frontend.mytabletime')->with('bookingusers', $bookingusers)->with('remain', $remain);
+        }
+        foreach ($bookingusers as $bookUser) {
+            $deadline = Carbon::parse($bookUser->timetable->date)->subDays(1);
+            $now = Carbon::now();
+            if ($now->gte($deadline)) {
+                $bookUser->cancel = false;
+            } else {
+                $bookUser->cancel = true;
+            }
+        }
+
+
+        return view('_frontend.mytabletime')->with('bookingusers', $bookingusers)->with('remain', $remain);
+    }
+
+
+    public function mytabletimeCancel($id, Request $request)
+    {
+        $bookinguser = $this->bookingUserRepository->makeModel()
+            ->where('status', 1)
+            ->where('id', $id)
+            ->where('user_id', auth()->user()->id)->first();
+
+        if ($bookinguser == null) {
+            return redirect()->back();
+        }
+
+        $this->timetableRepository->update([
+            'user_id' => null,
+            'booking_id' => null,
+        ], $bookinguser->tabletime_id);
+
+        $this->bookingUserRepository->update([
+            'status' => 0,
+            'tabletime_id' => null
+        ], $bookinguser->id);
+
+        return redirect()->route('mytabletime');
     }
 
     public function cancel(Request $request)

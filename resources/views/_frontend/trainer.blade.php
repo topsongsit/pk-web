@@ -15,6 +15,7 @@
                     <b><h5 class="card-title" style="color:black">{{ $trainer->tname }}</h5></b>
                     <h6 class="card-title" style="color:black">{{ $trainer->tdetail }}</h6>
                     @if (request()->has(['course'])) 
+                    <h6 class="card-title" style="color:black">*ไม่เสียค่าใช้จ่ายเพิ่มเติม</h6>
                     <a href="/check?course={{ request()->course }}&trainer={{ $trainer->id }}" class="btn btn-primary btn-danger">จ้าง</a>
                     @endif
                     {{-- <a href="{{ route('trainer.detail', $trainer->id) }}" class="text-center">รายละเอียด</a> --}}
@@ -44,6 +45,7 @@
                     <h5 class="card-title" style="color:black">{{ $boxer->tname }}</h5>
                     <h6 class="card-title" style="color:black">{{ $boxer->tdetail}}</h6>
                     @if (request()->has(['course'])) 
+                    <h6 class="card-title" style="color:black">*ราคา {{ $boxer->tprice }} บาท</h6>
                     <a href="/check?course={{ request()->course }}&trainer={{ $boxer->id }}" class="btn btn-primary btn-danger">จ้าง</a>
                     @endif
                     {{-- <a href="{{ route('trainer.detail', $boxer->id) }}" class="text-center">รายละเอียด</a> --}}

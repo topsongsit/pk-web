@@ -37,7 +37,8 @@ class Booking extends Model
         'trainer_id',
         'status_id',
         'bmoney_img',
-        'booking_number'
+        'booking_number',
+        'deleted_at'
     ];
 
     /**
