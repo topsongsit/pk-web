@@ -5,6 +5,7 @@
                 <th>User</th>
         <th>Course</th>
         <th>Status</th>
+        <th>Timetable</th>
         <th>Booking</th>
                 <th colspan="3">Action</th>
             </tr>
@@ -15,6 +16,7 @@
                 <td>{{ $bookingUser->user->name }}</td>
             <td>{{ $bookingUser->course->cname }}</td>
             <td>{{ $bookingUser->status }}</td>
+            <td>{{ $bookingUser->tabletime_id }}</td>
             <td>{{ $bookingUser->booking->booking_number }}</td>
                 <td>
                     {!! Form::open(['route' => ['bookingUsers.destroy', $bookingUser->id], 'method' => 'delete']) !!}

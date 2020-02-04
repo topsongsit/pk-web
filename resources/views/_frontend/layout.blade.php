@@ -73,15 +73,20 @@
         </ul>
         </div>
         </nav>
-        </header>
-
         
         <div class="container-fluid">
             @yield('content')
         </div>
 
-        
-    </div>
+        {{-- --footer-- --}}
+        {{-- <div class="footer text-white" >P.K.SAENCHAIMUAYTHAIGYM <strong>โดย : นายทรงสิทธิ์ เทศรุ่งเรือง 13590036</strong>.</div> --}}
+
+    
+    </header>
+
+
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

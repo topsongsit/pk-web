@@ -13,21 +13,24 @@
             <a class="nav-link" href="/mytabletime">ตารางเรียน</a>        
             </div>            
         </div>
-        {{-- <form method="post" action="/editprofile"> --}}
+    {{-- <form method="POST" action="/editprofile">
+        @csrf_field --}}
+        
         <div class="col-md-8 text-left">
             <div class="card text-dark p-3">                      
         <h5>ชื่อ</h5>
-        <input class="form-control" name="name" type="text" id="name" value="">     
+        <input class="form-control" name="name" type="text" id="name" value="{{ \Auth::user()->name }}">     
         <h5>นามสกุล</h5>
-        <input class="form-control" name="surname" type="text" id="surname" value="">
+        <input class="form-control" name="surname" type="text" id="surname" value="{{ \Auth::user()->surname }}">
         <h5>เบอร์โทร</h5>
-        <input class="form-control" name="tel" type="text" id="tel" value="">
+        <input class="form-control" name="tel" type="text" id="tel" value="{{ \Auth::user()->tel }}">
         <h5>ประวัติการรักษาโรค</h5>
-        <input class="form-control" name="history" type="text" id="history" value="">
-
+        <input class="form-control" name="history" type="text" id="history" value="{{ \Auth::user()->history }}">
+      
             <br><input class="btn btn-primary btn-block btn-danger" type="submit" value="แก้ไข">
         </div>
-            </div>          
+            </div>     
+        {{-- </form>      --}}
         </div>
     </div>
     </div>

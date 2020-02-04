@@ -13,6 +13,7 @@ use App\Repositories\BookingUserRepository;
 use App\Repositories\TimetableRepository;
 use Flash;
 use Carbon\Carbon;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -194,9 +195,11 @@ class HomeController extends Controller
     }
 
 
-    public function editprofile()
+    public function editprofile(Request $request)
     {
-        return view('_frontend.editprofile');
+        $user = User::all();
+
+        return view('_frontend.editprofile')->with('users', $user);
     }
 
     public function transfer()

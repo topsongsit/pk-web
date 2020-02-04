@@ -52,6 +52,7 @@ Route::get('/contact', 'HomeController@contact');
 Route::get('/check', 'HomeController@check');
 
 
+
 Route::post('/booking/store', 'HomeController@saveBooking');
 Route::get('/booking/show/{id}', 'HomeController@booking')->name('booking.show');
 Route::get('/booking/cancel/{id}', 'HomeController@bookingCancel')->name('booking.cancel');

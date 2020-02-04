@@ -16,6 +16,12 @@
     {!! Form::number('status', null, ['class' => 'form-control']) !!}
 </div>
 
+{{-- !-- tabletime_id Field --> --}}
+<div class="form-group col-sm-6">
+    {!! Form::label('tabletime_id', 'Tabletime:') !!}
+    {!! Form::number('tabletime_id', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Booking Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('booking_id', 'Booking:') !!}

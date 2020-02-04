@@ -10,6 +10,12 @@
     <p>{{ $bookingUser->course_id }}</p>
 </div>
 
+<!-- Tabletime Id Field -->
+<div class="form-group">
+    {!! Form::label('tabletime_id', 'Tabletime:') !!}
+    <p>{{ $bookingUser->tabletime_id }}</p>
+</div>
+
 <!-- Status Field -->
 <div class="form-group">
     {!! Form::label('status', 'Status:') !!}
