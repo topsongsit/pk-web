@@ -54,11 +54,11 @@ class TrainerController extends AppBaseController
      */
     public function store(CreateTrainerRequest $request)
     {
-        // upload image  
-        $imageName = time() . '.' . request()->timg->getClientOriginalExtension();
-        request()->timg->move(public_path('images'), $imageName);
-        $input = $request->all();
-        $input['timg'] = '/images/' . $imageName;
+        if ($request->has('timg_new')) {
+            // upload image  
+            $path = $request->file('timg_new')->store('uploads');
+            $input['timg'] = $path;
+        }
 
         $trainer = $this->trainerRepository->create($input);
 
@@ -117,21 +117,19 @@ class TrainerController extends AppBaseController
      */
     public function update($id, UpdateTrainerRequest $request)
     {
-        $trainer = $this->trainerRepository->find($id);
         $input = $request->all();
+        // upload image  
+        if ($request->has('timg_new')) {
+            // upload image  
+            $path = $request->file('timg_new')->store('uploads');
+            $input['timg'] = $path;
+        }
 
+        $trainer = $this->trainerRepository->find($id);
         if (empty($trainer)) {
             Flash::error('Trainer  not found');
 
             return redirect(route('trainers.index'));
-        }
-        if (request()->timg) {
-
-            // upload image  
-            $imageName = time() . '.' . request()->timg->getClientOriginalExtension();
-            request()->timg->move(public_path('images'), $imageName);
-            $input = $request->all();
-            $input['timg'] = '/images/' . $imageName;
         }
 
         $trainer = $this->trainerRepository->update($input, $id);

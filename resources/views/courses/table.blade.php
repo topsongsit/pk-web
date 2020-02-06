@@ -14,7 +14,7 @@
             <tr>
                 <td>{{ $course->cname }}</td>
             <td>{{ $course->cdetail }}</td>
-            <td> <img src="{{ $course->cimg  }}" width="100"> </td>
+            <td> <img src="{{ asset($course->cimg)  }}" width="100"> </td>
             <td>{{ $course->cprice }}</td>
                 <td>
                     {!! Form::open(['route' => ['courses.destroy', $course->id], 'method' => 'delete']) !!}

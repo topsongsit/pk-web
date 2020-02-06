@@ -1,45 +1,14 @@
-{{-- @if (!empty($timetable))
 <!-- User Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::select('user_id', $users,$timetable->user_id, ['class' => 'form-control']) !!}
+    {!! Form::label('id', 'ID:') !!}
+    {!! Form::number('id', null, ['class' => 'form-control']) !!}
 </div>
-@else
-<!-- User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::select('user_id', $users,null, ['class' => 'form-control']) !!}
-</div> 
-@endif
 
-@if (!empty($timetable))
-<!-- Booking Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('booking_id', 'Booking:') !!}
-    {!! Form::select('booking_id', $bookings,$timetables->booking_id, ['class' => 'form-control']) !!}
-</div>
-@else
-<!-- Booking Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('booking_id', 'Booking:') !!}
-    {!! Form::select('booking_id', $bookings,null, ['class' => 'form-control']) !!}
-</div> 
-@endif --}}
-
-
-@if (!empty($timetable))
   <!-- Day Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('day_id', 'Day:') !!}
-    {!! Form::select('day_id', $days,$timetable->day_id ,['class' => 'form-control']) !!}
+    {!! Form::select('day_id', $days,$timetable->day_id ?? null,['class' => 'form-control']) !!}
 </div>  
-@else
-  <!-- Day Id Field -->
-  <div class="form-group col-sm-6">
-    {!! Form::label('day_id', 'Day:') !!}
-    {!! Form::select('day_id', $days, null,['class' => 'form-control']) !!}
-</div>  
-@endif
 
 {{-- 
 <!-- Stages Id Field -->

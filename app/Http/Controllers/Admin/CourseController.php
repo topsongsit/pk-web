@@ -54,12 +54,11 @@ class CourseController extends AppBaseController
      */
     public function store(Request $request)
     {
-        // upload image  
-        $imageName = time().'.'.request()->cimg->getClientOriginalExtension();
-        request()->cimg->move(public_path('images'), $imageName);
-        $input = $request->all();
-        $input['cimg'] = '/images/'.$imageName;
-
+        if ($request->has('cimg_new')) {
+            // upload image  
+            $path = $request->file('cimg_new')->store('uploads');
+            $input['cimg'] = $path;
+        }
 
         $course = $this->courseRepository->create($input);
 
@@ -118,22 +117,21 @@ class CourseController extends AppBaseController
      */
     public function update($id, UpdateCourseRequest $request)
     {
-        $course = $this->courseRepository->find($id);
+
         $input = $request->all();
+        // upload image  
+        if ($request->has('cimg_new')) {
+            // upload image  
+            $path = $request->file('cimg_new')->store('uploads');
+            $input['cimg'] = $path;
+        }
+
+        $course = $this->courseRepository->find($id);
 
         if (empty($course)) {
             Flash::error('Course not found');
 
             return redirect(route('courses.index'));
-        }
-
-        if(request()->cimg){
-            // upload image  
-            $imageName = time().'.'.request()->cimg->getClientOriginalExtension();
-            request()->cimg->move(public_path('images'), $imageName);
-            $input = $request->all();
-
-            $input['cimg'] = '/images/'.$imageName;
         }
 
         $course = $this->courseRepository->update($input, $id);

@@ -57,7 +57,7 @@ class TimetableController extends AppBaseController
             return [$item['id'] => $item['dname']];
         });
 
-     
+
         return view('timetables.create')->with('trainers', $trainers)->with('days', $days);
     }
 
@@ -120,7 +120,6 @@ class TimetableController extends AppBaseController
         $trainer = Trainer::all();
         $days = Day::all();
 
-        // dd($days);
         $trainers = $trainer->mapWithKeys(function ($item) {
             return [$item['id'] => $item['tname']];
         });

@@ -12,6 +12,12 @@
 
 <!-- Day Id Field -->
 <div class="form-group">
+    {!! Form::label('id', 'ID:') !!}
+    <p>{{ $timetable->id }}</p>
+</div>
+
+<!-- Day Id Field -->
+<div class="form-group">
     {!! Form::label('day_id', 'Day:') !!}
     <p>{{ $timetable->day_id }}</p>
 </div>

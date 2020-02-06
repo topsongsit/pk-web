@@ -116,13 +116,13 @@
             </div>
             </div>
 
-            <div class="form-group has-feedback{{ $errors->has('history') ? ' has-error' : '' }}">
+            <div class="form-group has-feedback{{ $errors->has('history') ? ' has-error' :'' }}">
                 <input type="text" class="form-control" name="history" value="{{ old('history') }}" placeholder="ประวัติการรักษา,โรคประจำตัว">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
                 @if ($errors->has('history'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('history') }}</strong>
+                        <strong>{{ $errors->first('history') }}>
                     </span>
                 @endif
             </div>

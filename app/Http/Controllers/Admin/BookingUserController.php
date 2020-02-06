@@ -108,8 +108,6 @@ class BookingUserController extends AppBaseController
         $courses = Course::all();
         $user = User::all();
 
-
-        // dd($days);
         $bookings = $bookings->mapWithKeys(function ($item) {
             return [$item['id'] => $item['bname']];
         });

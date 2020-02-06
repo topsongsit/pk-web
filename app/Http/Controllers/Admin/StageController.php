@@ -54,13 +54,11 @@ class StageController extends AppBaseController
      */
     public function store(Request $request)
     {
-        // upload image  
-        
-        $imageName = time().'.'.request()->stimg->getClientOriginalExtension();
-        request()->stimg->move(public_path('images'), $imageName);
-        $input = $request->all();
-        $input['stimg'] = '/images/'.$imageName;
-
+        if ($request->has('stimg_new')) {
+            // upload image  
+            $path = $request->file('stimg_new')->store('uploads');
+            $input['stimg'] = $path;
+        }
 
         $stages = $this->stageRepository->create($input);
 
@@ -118,20 +116,19 @@ class StageController extends AppBaseController
      */
     public function update($id, UpdateStageRequest $request)
     {
-        $stages = $this->stageRepository->find($id);
         $input = $request->all();
+        if ($request->has('stimg_new')) {
+            // upload image  
+            $path = $request->file('stimg_new')->store('uploads');
+            $input['stimg'] = $path;
+        }
+
+        $stages = $this->stageRepository->find($id);
 
         if (empty($stages)) {
             Flash::error('Stage not found');
 
             return redirect(route('stages.index'));
-        }
-        if(request()->stimg){
-            // upload image  
-            $imageName = time().'.'.request()->stimg->getClientOriginalExtension();
-            request()->stimg->move(public_path('images'), $imageName);
-            $input = $request->all();
-            $input['stimg'] = '/images/'.$imageName;
         }
 
         $stages = $this->stageRepository->update($input, $id);

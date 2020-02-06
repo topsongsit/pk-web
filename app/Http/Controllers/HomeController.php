@@ -64,18 +64,18 @@ class HomeController extends Controller
         return view('_frontend.trainer')->with('trainers', $trainers)->with('boxers', $boxers);
     }
 
-    public function trainerDetail($id)
-    {
-        $trainer = $this->trainerRepository->find($id);
-        return view('_frontend.trainer_detail')->with('trainer', $trainer);
-    }
+    // public function trainerDetail($id)
+    // {
+    //     $trainer = $this->trainerRepository->find($id);
+    //     return view('_frontend.trainer_detail')->with('trainer', $trainer);
+    // }
 
-    public function boxer()
-    {
-        $trainers = $this->trainerRepository->all();
+    // public function boxer()
+    // {
+    //     $trainers = $this->trainerRepository->all();
 
-        return view('_frontend.trainer')->with('trainers', $trainers);
-    }
+    //     return view('_frontend.trainer')->with('trainers', $trainers);
+    // }
 
     public function stage()
     {
@@ -195,11 +195,23 @@ class HomeController extends Controller
     }
 
 
+    public function profile(Request $request)
+    {
+        $user =  auth()->user();
+        // dd($user);
+        return view('_frontend.editprofile');
+    }
+
     public function editprofile(Request $request)
     {
-        $user = User::all();
-
-        return view('_frontend.editprofile')->with('users', $user);
+        $userid = auth()->user()->id;
+        User::where('id', $userid)->update([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'tel' => $request->tel,
+            'history' => $request->history
+        ]);
+        return redirect('/editprofile');
     }
 
     public function transfer()

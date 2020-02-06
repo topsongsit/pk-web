@@ -11,10 +11,21 @@
 </div>
 
 <!-- Timg Field -->
+@isset($trainer)
+<div class="form-group col-sm-6">
+    {!! Form::label('timg', 'Img:') !!}
+    <input type="hidden" name="timg" value="{{ $trainer->timg }}">
+    {!! Form::file('timg_new',['class' => 'form-control']) !!}
+    <img src="{{ asset($trainer->timg) }}" width="100">
+</div> 
+@endisset
+
+@empty($trainer)
 <div class="form-group col-sm-6">
     {!! Form::label('timg', 'Img:') !!}
     {!! Form::file('timg',['class' => 'form-control']) !!}
 </div>
+@endempty
 
 <!-- Tcategory Field -->
 <div class="form-group col-sm-6">

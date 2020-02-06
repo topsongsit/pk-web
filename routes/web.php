@@ -38,7 +38,8 @@ Route::group([
 
 // ของ user ปกติ
 Route::get('/', 'HomeController@index');
-Route::get('/editprofile', 'HomeController@editprofile');
+Route::post('/editprofile', 'HomeController@editprofile');
+Route::get('/editprofile', 'HomeController@profile');
 Route::get('/transfer', 'HomeController@transfer')->name('transfer');
 Route::get('/mytabletime', 'HomeController@mytabletime')->name('mytabletime');
 Route::get('/mytabletime/cancel/{id}', 'HomeController@mytabletimeCancel');

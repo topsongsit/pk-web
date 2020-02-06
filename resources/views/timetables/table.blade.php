@@ -16,6 +16,7 @@
             <tr>
                 {{-- <td>{{ $timetable->user_id }}</td>
             <td>{{ $timetable->booking_id }}</td> --}}
+            <td>{{ $timetable->id }}</td>
             <td>{{ $timetable->day->dname }}</td>
             {{-- <td>{{ $timetable->stages_id }}</td> --}}
             <td>{{ $timetable->trainer->tname }}</td>

@@ -13,10 +13,12 @@
             <a class="nav-link" href="/mytabletime">ตารางเรียน</a>        
             </div>            
         </div>
-    {{-- <form method="POST" action="/editprofile">
-        @csrf_field --}}
+    
+       
         
         <div class="col-md-8 text-left">
+            <form method="POST" action="/editprofile">
+                @csrf
             <div class="card text-dark p-3">                      
         <h5>ชื่อ</h5>
         <input class="form-control" name="name" type="text" id="name" value="{{ \Auth::user()->name }}">     
@@ -29,8 +31,9 @@
       
             <br><input class="btn btn-primary btn-block btn-danger" type="submit" value="แก้ไข">
         </div>
+    </form> 
             </div>     
-        {{-- </form>      --}}
+         
         </div>
     </div>
     </div>

@@ -10,11 +10,24 @@
     {!! Form::textarea('cdetail', null, ['class' => 'form-control']) !!}
 </div>
 
+
 <!-- Cimg Field -->
+@isset($course)
+<div class="form-group col-sm-6">
+    {!! Form::label('cimg', 'Img:') !!}
+    <input type="hidden" name="cimg" value="{{ $course->cimg }}">
+    {!! Form::file('cimg_new',['class' => 'form-control']) !!}
+    <img src="{{ asset($course->cimg) }}" width="100">
+</div>
+@endisset
+
+@empty($course)
 <div class="form-group col-sm-6">
     {!! Form::label('cimg', 'Img:') !!}
     {!! Form::file('cimg',['class' => 'form-control']) !!}
 </div>
+@endempty
+
 
 <!-- Cprice Field -->
 <div class="form-group col-sm-6">
