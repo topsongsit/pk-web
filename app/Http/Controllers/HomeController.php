@@ -127,6 +127,7 @@ class HomeController extends Controller
         if ($trainer == null) {
             return redirect('/course');
         }
+
         $userid = auth()->user()->id;
         $date =   date('YmdHis');
         $bookingNumber = 'PK' . sprintf("%'.015s", $date);

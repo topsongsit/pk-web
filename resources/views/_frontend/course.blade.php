@@ -5,10 +5,12 @@
     <h3 class=" mt-5">คอร์สเรียน</h3>
     @foreach($courses as $course)
     <div class="row mt-3">
+        <a id="{{$course->id}}"></a>
         <div class="col-md-6">
             <img class="card-img-top d-flex" src="{{ $course->cimg }}" alt="Card image cap">
         </div>
         <div class="col-md-6">
+       
             <h3>{{ $course->cname }}</h3>
             <h5><strong>เหมาะสมกับ : </strong>{{ $course->cdetail }}</h5>
             <h5><strong>ราคา</strong> {{ $course->cprice }} บาท</h5>
@@ -27,5 +29,15 @@
 
 </div>
 </header>
-
+<script>
+    $(document).ready(function(){
+        function goToByScroll() {
+        // Scroll
+        $('html,body').animate({
+            scrollTop: $("#{{ request()->id }}").offset().top - 150
+        }, 'slow');
+        }
+        goToByScroll()
+    })
+</script>
 @endsection

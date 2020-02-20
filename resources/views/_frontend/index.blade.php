@@ -20,6 +20,7 @@
         {{-- เงื่อนไขดึงมาจาก controller --}}
         {{-- {{ $course }} --}}
         <div class="col-md-4 ">
+        <a href="/course?id={{ $course->id }}">
             <div class="card">
                 <img class="card-img-top d-flex" src="{{ $course->cimg }}" alt="Card image cap">
                 <div class="card-body">
@@ -27,6 +28,7 @@
                     <h5 class="card-text">ราคา {{ $course->cprice }} บาท </h5>
                 </div>
             </div>
+        </a>
         </div>
         @endforeach
         {{-- {{ --@endfor-- }} --}}
@@ -41,12 +43,14 @@
 
         @foreach($trainers as $trainer)
         <div class="col-md-3 ">
-            <div class="card">
-                <img class="card-img-top d-flex" src="{{ $trainer->timg }}" alt="Card image cap">
+        <a href="/trainer">
+            <div class="card" >
+                <img class="card-img-top d-flex" src="{{ $trainer->timg }}" alt="Card image cap" >
                 <div class="card-body">
                     <h5 class="card-title">{{ $trainer->tname }}</h5>
                 </div>
             </div>
+        </a>
         </div>
         @endforeach
         {{-- @endfor --}}

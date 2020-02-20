@@ -27,6 +27,7 @@
 
                 </div>
                     @foreach ($bookingusers as $bookinguser)
+                        @if(\Carbon\Carbon::parse($bookinguser->timetable->date)->gte(\Carbon\Carbon::now()))
                         <div class="row">
                             <div class="col-sm-3 text-left">
                                 {{  \Carbon\Carbon::parse($bookinguser->timetable->date)->format('Y-m-d') }}
@@ -43,10 +44,37 @@
                             </div>
                             @endif
                         </div>
+                        @endif
                     @endforeach
                 @endempty
                 <br><div>
                     <a>เหลือเวลาเรียน</a> {{ $remain }} <a>ครั้ง</a>
+
+                    <hr>
+
+                    <div>
+                        <strong>เรียนที่แล้ว</strong>
+                        @foreach ($bookingusers as $bookinguser)
+                        @if(\Carbon\Carbon::parse($bookinguser->timetable->date)->lt(\Carbon\Carbon::now()))
+                        <div class="row">
+                            <div class="col-sm-3 text-left">
+                                {{  \Carbon\Carbon::parse($bookinguser->timetable->date)->format('Y-m-d') }}
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                {{ $bookinguser->timetable->day->dname }}
+                            </div>
+                            <div class="col-sm-2 text-left">
+                                {{  $bookinguser->timetable->trainer->tname}}
+                            </div>
+                            @if($bookinguser->cancel)
+                            <div class="col-sm-3 text-left">
+                               <a href="javascript:CancelTimeTable({{ $bookinguser->id }})">ยกเลิก</a> 
+                            </div>
+                            @endif
+                        </div>
+                        @endif
+                    @endforeach
+                    </div>
                 </div>
             </div>  
 

@@ -52,14 +52,15 @@ Route::get('/stage', 'HomeController@stage');
 Route::get('/contact', 'HomeController@contact');
 Route::get('/check', 'HomeController@check');
 
-
-
-Route::post('/booking/store', 'HomeController@saveBooking');
-Route::get('/booking/show/{id}', 'HomeController@booking')->name('booking.show');
-Route::get('/booking/cancel/{id}', 'HomeController@bookingCancel')->name('booking.cancel');
-Route::post('/booking/upload', 'HomeController@uploadBooking')->name('booking.upload');
-Route::get('/transfer/timetable/{id}', 'HomeController@timetable')->name('booking.timetable');
-Route::get('/booking/reserve/{id}/booking/{bookingId}', 'HomeController@reserve')->name('booking.reserve');
+// ถ้าไม่ login ไม่สามารถจองคอร์สเรียนได้
+Route::middleware(['auth'])->group(function () {
+    Route::post('/booking/store', 'HomeController@saveBooking');
+    Route::get('/booking/show/{id}', 'HomeController@booking')->name('booking.show');
+    Route::get('/booking/cancel/{id}', 'HomeController@bookingCancel')->name('booking.cancel');
+    Route::post('/booking/upload', 'HomeController@uploadBooking')->name('booking.upload');
+    Route::get('/transfer/timetable/{id}', 'HomeController@timetable')->name('booking.timetable');
+    Route::get('/booking/reserve/{id}/booking/{bookingId}', 'HomeController@reserve')->name('booking.reserve');
+});
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/cancel', 'HomeController@cancel');
