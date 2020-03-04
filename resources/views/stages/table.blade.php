@@ -5,7 +5,7 @@
                 <th>Name</th>
         <th>Detail</th>
         <th>Img</th>
-                <th colspan="3">Action</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -28,3 +28,11 @@
         </tbody>
     </table>
 </div>
+
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#stages-table').DataTable();
+    } );
+    </script>
+@endsection

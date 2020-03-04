@@ -30,6 +30,7 @@
     {!! Form::date('date', $timetable->date ?? null , ['class' => 'form-control','id'=>'date']) !!}
 </div>
 
+{{-- 
 @section('scripts')
     <script type="text/javascript">
         $('#date').datetimepicker({
@@ -37,7 +38,7 @@
             useCurrent: false
         })
     </script>
-@endsection
+@endsection --}}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

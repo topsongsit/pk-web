@@ -53,7 +53,7 @@
                     <hr>
 
                     <div>
-                        <strong>เรียนที่แล้ว</strong>
+                        <strong>คอร์สที่เรียนแล้ว</strong>
                         @foreach ($bookingusers as $bookinguser)
                         @if(\Carbon\Carbon::parse($bookinguser->timetable->date)->lt(\Carbon\Carbon::now()))
                         <div class="row">

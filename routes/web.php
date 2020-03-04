@@ -28,6 +28,7 @@ Route::group([
     'middleware' => 'admin'
 ], function () {
     Route::get('/', 'HomeController@index');
+    Route::resource('report', 'HomeController');
     Route::resource('courses', 'CourseController');
     Route::resource('stages', 'StageController');
     Route::resource('trainers', 'TrainerController');

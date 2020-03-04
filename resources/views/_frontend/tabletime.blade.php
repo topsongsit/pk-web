@@ -28,6 +28,7 @@
 
                 </div>
                     @foreach ($timetable as $timetable)
+                    @if(\Carbon\Carbon::parse($timetable->date)->gte(\Carbon\Carbon::now()))
                         <div class="row">
                             <div class="col-sm-3 text-left">
                                 {{  \Carbon\Carbon::parse($timetable->date)->format('Y-m-d') }}
@@ -42,6 +43,7 @@
                                 <a href="{{ route('booking.reserve' , ['id' => $timetable->id , 'bookingId' => $booking->id ]) }}">จอง</a>
                             </div>
                         </div>
+                        @endif
                     @endforeach
                 @endempty
 

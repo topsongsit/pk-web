@@ -1,3 +1,6 @@
+<li class="{{ Request::is('admin.report*') ? 'active' : '' }}">
+    <a href="{{ route('report.index') }}"><i class="fa fa-align-justify"></i><span>Report</span></a>
+</li>
 <li class="{{ Request::is('admin.courses*') ? 'active' : '' }}">
     <a href="{{ route('courses.index') }}"><i class="fa fa-align-justify"></i><span>Course</span></a>
 </li>

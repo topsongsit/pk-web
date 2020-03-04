@@ -7,7 +7,7 @@
         <th>Trainer</th>
         <th>Status</th>
         <th>Money Image</th>
-                <th colspan="3">Action</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -33,3 +33,11 @@
         </tbody>
     </table>
 </div>
+
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#bookings-table').DataTable();
+    } );
+    </script>
+@endsection

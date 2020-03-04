@@ -32,7 +32,6 @@
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
-
             <!-- Logo -->
             <!-- Header Navbar -->
             <nav class="navbar " style="background-color:#a71200;" role="navigation">
@@ -82,12 +81,17 @@
             </nav>
         </header>
 
+        
+
         <!-- Left side column. contains the logo and sidebar -->
         @include('layouts.sidebar')
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+            
             @yield('content')
         </div>
+
+
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
@@ -153,5 +157,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    @include('layouts.datatables_js')
+
+    @yield('scripts')
 </body>
 </html>

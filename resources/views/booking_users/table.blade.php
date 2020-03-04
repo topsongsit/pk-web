@@ -7,7 +7,7 @@
         <th>Status</th>
         <th>Timetable</th>
         <th>Booking</th>
-                <th colspan="3">Action</th>
+                <th >Action</th>
             </tr>
         </thead>
         <tbody>
@@ -16,7 +16,7 @@
                 <td>{{ $bookingUser->user->name }}</td>
             <td>{{ $bookingUser->course->cname }}</td>
             <td>{{ $bookingUser->status }}</td>
-            <td>{{ $bookingUser->tabletime_id }}</td>
+            <td >{{ $bookingUser->tabletime_id }}</td>
             <td>{{ $bookingUser->booking->booking_number }}</td>
                 <td>
                     {!! Form::open(['route' => ['bookingUsers.destroy', $bookingUser->id], 'method' => 'delete']) !!}
@@ -32,3 +32,12 @@
         </tbody>
     </table>
 </div>
+
+
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#bookingUsers-table').DataTable();
+    } );
+    </script>
+@endsection

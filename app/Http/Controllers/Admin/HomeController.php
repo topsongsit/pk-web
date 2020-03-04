@@ -46,6 +46,8 @@ class HomeController extends Controller
             ->orderBy('total', 'desc')
             ->get();
 
+        // dd($courseReport);
+
         $trainerReport = DB::table('bookings')
             ->selectRaw('trainer_id, count(*) as total, trainers.tname as name')
             ->join('trainers', 'trainers.id', '=', 'bookings.trainer_id')
@@ -74,8 +76,13 @@ class HomeController extends Controller
             $total += ($item->cprice + $item->tprice);
         }
 
-        // dd($start, $end, $courseReport, $trainerReport, $userReport, $priceReport,  $total);
+        // dd(
+        //     //$start, $end, $courseReport, $trainerReport,
+        //     $userReport,
+        //     $priceReport,
+        //     $total
+        // );
 
-        return view('home')->with('courseReport', $courseReport);
+        return view('report.index')->with('courseReport', $courseReport)->with('userReport', $userReport)->with('total', $total);
     }
 }

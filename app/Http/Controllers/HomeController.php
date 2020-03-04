@@ -13,6 +13,7 @@ use App\Repositories\BookingUserRepository;
 use App\Repositories\TimetableRepository;
 use Flash;
 use Carbon\Carbon;
+use Carbon\Factory;
 use App\User;
 
 class HomeController extends Controller
@@ -129,7 +130,8 @@ class HomeController extends Controller
         }
 
         $userid = auth()->user()->id;
-        $date =   date('YmdHis');
+
+        $date = Carbon::now()->addHours(7)->format('YmdHis');
         $bookingNumber = 'PK' . sprintf("%'.015s", $date);
         $bookingfinish = $this->bookingRepository->create([
             'user_id' => $userid,

@@ -4,12 +4,13 @@
             <tr>
                 {{-- <th>User Id</th>
         <th>Booking Id</th> --}}
+        <th>Id</th>
         <th>Day</th>
         {{-- <th>Stages Id</th> --}}
         <th>Trainer</th>
         <th>Date</th>
-                <th colspan="3">Action</th>
-            </tr>
+        <th >Action</th>
+     </tr>
         </thead>
         <tbody>
         @foreach($timetables as $timetable)
@@ -35,3 +36,11 @@
         </tbody>
     </table>
 </div>
+
+@section('scripts')
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#timetables-table').DataTable();
+    } );
+    </script>
+@endsection
