@@ -306,8 +306,7 @@
             @include('report.dashboard')
 
 
-
-            @include('report.table')
+            {{-- @include('report.table') --}}
 
         </div>
     </div>

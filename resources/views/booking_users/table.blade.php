@@ -7,6 +7,7 @@
         <th>Status</th>
         <th>Timetable</th>
         <th>Booking</th>
+        <th>Time</th>
                 <th >Action</th>
             </tr>
         </thead>
@@ -18,6 +19,8 @@
             <td>{{ $bookingUser->status }}</td>
             <td >{{ $bookingUser->tabletime_id }}</td>
             <td>{{ $bookingUser->booking->booking_number }}</td>
+            <td >{{ $bookingUser->created_at }}</td>
+
                 <td>
                     {!! Form::open(['route' => ['bookingUsers.destroy', $bookingUser->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

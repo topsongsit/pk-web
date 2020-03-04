@@ -7,7 +7,9 @@
         <th>Trainer</th>
         <th>Status</th>
         <th>Money Image</th>
-                <th>Action</th>
+        <th>Money</th>
+        <th>Time</th>
+        <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +20,9 @@
             <td>{{ $booking->trainer->tname }}</td>
             <td>{{ $booking->status->sname }}</td>
             <td> <img src="{{url($booking->bmoney_img) }}" width="100"> </td>
+            <td>{{ $booking->summary }}</td>
+            <td>{{ $booking->created_at }}</td>
+
             {{-- <td>{{ $booking->bmoney_img }}</td> --}}
                 <td>
                     {!! Form::open(['route' => ['bookings.destroy', $booking->id], 'method' => 'delete']) !!}

@@ -4,22 +4,18 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>User</th>
-                    <th>Course</th>
-                    <th>Status</th>
-                    <th>Timetable</th>
-                    <th>Booking</th>
-                    <th>Action</th>
+                    @foreach($trainerReport as $t)
+                    <th>{{ $t->name }}</th>
+                    @endforeach
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>User</td>
-                    <td>Course</td>
-                    <td>Status</td>
-                    <td>Timetable</td>
-                    <td>Booking</td>
-                    <td>Action</td>
+                    @foreach($trainerReport as $t)
+
+                    <td>{{ $t->total }} คน</td>
+                    @endforeach
+
                 </tr>
             </tbody>
         </table>

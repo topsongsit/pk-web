@@ -19,7 +19,7 @@
 <!-- Day Id Field -->
 <div class="form-group">
     {!! Form::label('day_id', 'Day:') !!}
-    <p>{{ $timetable->day_id }}</p>
+    <p>{{ $timetable->day->dname }}</p>
 </div>
 {{-- 
 <!-- Stages Id Field -->
@@ -31,7 +31,7 @@
 <!-- Trainer Id Field -->
 <div class="form-group">
     {!! Form::label('trainer_id', 'Trainer:') !!}
-    <p>{{ $timetable->trainer_id }}</p>
+    <p>{{ $timetable->trainer->tname }}</p>
 </div>
 
 <!-- Date Field -->

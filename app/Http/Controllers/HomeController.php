@@ -128,7 +128,7 @@ class HomeController extends Controller
         if ($trainer == null) {
             return redirect('/course');
         }
-
+        $summary = $this->calculate($course->cprice, $trainer->tprice);
         $userid = auth()->user()->id;
 
         $date = Carbon::now()->addHours(7)->format('YmdHis');
@@ -140,6 +140,7 @@ class HomeController extends Controller
             'status_id' => '1',
             'bmoney_img' => '',
             'booking_number' => $bookingNumber,
+            'summary' => ($course->cprice + $trainer->tprice) / 2,
         ]);
         if ($bookingfinish == null) {
             // Flash::success('Booking saved successfully.');
@@ -163,7 +164,8 @@ class HomeController extends Controller
         $booking = $this->bookingRepository->makeModel()
             ->where('id', $id)
             ->where('user_id',  auth()->user()->id)
-            ->with(['user', 'course', 'trainer', 'status'])->first();
+            ->with(['user', 'course', 'trainer', 'status', 'summary'])->first();
+
         return view('_frontend.booking')->with('booking', $booking)->with('course', $course)->with('trainer', $trainer)->with('summary', $summary);
     }
 
@@ -285,7 +287,6 @@ class HomeController extends Controller
         $request->session()->forget('check');
         return redirect('/course');
     }
-
 
     public function uploadBooking(Request $request)
     {

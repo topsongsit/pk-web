@@ -36,6 +36,19 @@
     {!! Form::text('bmoney_img', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Bmoney Img Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('summary', 'Money:') !!}
+    {!! Form::text('summary', null, ['class' => 'form-control']) !!}
+</div>
+
+{{-- 
+<!-- Time Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('created_at', 'time:') !!}
+    {!! Form::select('created_at', $trainers,  $bookings->created_at ?? null, ['class' => 'form-control']) !!}
+</div> --}}
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

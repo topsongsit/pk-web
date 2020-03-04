@@ -73,7 +73,7 @@ class HomeController extends Controller
 
         $total = 0;
         foreach ($priceReport as $item) {
-            $total += ($item->cprice + $item->tprice);
+            $total += ($item->cprice + $item->tprice) / 2;
         }
 
         // dd(
@@ -83,6 +83,6 @@ class HomeController extends Controller
         //     $total
         // );
 
-        return view('report.index')->with('courseReport', $courseReport)->with('userReport', $userReport)->with('total', $total);
+        return view('report.index')->with('courseReport', $courseReport)->with('userReport', $userReport)->with('total', $total)->with('trainerReport', $trainerReport);
     }
 }

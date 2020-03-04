@@ -1,13 +1,13 @@
 <!-- User Id Field -->
 <div class="form-group">
     {!! Form::label('user_id', 'User:') !!}
-    <p>{{ $bookingUser->user_id }}</p>
+    <p>{{ $bookingUser->user->name }}</p>
 </div>
 
 <!-- Course Id Field -->
 <div class="form-group">
     {!! Form::label('course_id', 'Course:') !!}
-    <p>{{ $bookingUser->course_id }}</p>
+    <p>{{ $bookingUser->course->cname }}</p>
 </div>
 
 <!-- Tabletime Id Field -->
@@ -25,6 +25,7 @@
 <!-- Booking Id Field -->
 <div class="form-group">
     {!! Form::label('booking_id', 'Booking:') !!}
-    <p>{{ $bookingUser->booking_id }}</p>
+    <p>{{ $bookingUser->booking->booking_number  }}</p>
 </div>
+
 

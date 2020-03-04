@@ -9,6 +9,7 @@
         {{-- <th>Stages Id</th> --}}
         <th>Trainer</th>
         <th>Date</th>
+        <th>Time</th>
         <th >Action</th>
      </tr>
         </thead>
@@ -21,6 +22,7 @@
             <td>{{ $timetable->day->dname }}</td>
             {{-- <td>{{ $timetable->stages_id }}</td> --}}
             <td>{{ $timetable->trainer->tname }}</td>
+            <td>{{ $timetable->created_at }}</td>
             <td>{{ $timetable->date }}</td>
                 <td>
                     {!! Form::open(['route' => ['timetables.destroy', $timetable->id], 'method' => 'delete']) !!}

@@ -38,6 +38,7 @@ class Booking extends Model
         'status_id',
         'bmoney_img',
         'booking_number',
+        'summary',
         'deleted_at'
     ];
 
@@ -100,6 +101,10 @@ class Booking extends Model
         return $this->belongsTo(\App\User::class, 'user_id');
     }
 
+    public function summary()
+    {
+        return $this->belongsTo(\App\User::class, 'summary');
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
