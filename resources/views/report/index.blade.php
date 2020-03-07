@@ -2,6 +2,7 @@
 
 @section('content')
 <style>
+    
     .dash-list {
         display: -webkit-box;
         display: flex;
@@ -61,8 +62,9 @@
         }
     }
 
+
     .dash-item--published {
-        box-shadow: inset 4px 0 0 #3bb275, 0 1px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: inset 4px 0 0 #a71100, 0 1px 0 rgba(0, 0, 0, 0.1);
     }
 
     .dash-item--draft {
@@ -91,7 +93,7 @@
 
     .dash-item__status {
         font-size: .7rem;
-        font-weight: 300;
+        font-weight: 500;
         text-transform: uppercase;
         color: #888;
         position: absolute;
