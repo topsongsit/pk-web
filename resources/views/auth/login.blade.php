@@ -19,9 +19,9 @@
     <div class="container">
         <!-- /.login-logo -->
         <div class="row justify-content-center align-items-center">
-            <div class="col-4">
-                <br><br><br><br><br><div class="card">
-                    <div class="card-body text-center ">
+            <div class="col-6">
+                <br><br><br><br><br><div class="card" >
+                    <div class="card-body text-center" >
             <h3 class="mb-4">เข้าสู่ระบบ</h3>
 
         <form method="post" action="{{ url('/login') }}">
@@ -69,6 +69,8 @@
     <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
+</div>
+</div>
 
 
 
