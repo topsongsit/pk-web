@@ -59,7 +59,7 @@
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                <input type="password" class="form-control" name="password" placeholder="พาสเวิร์ด">
+                <input type="password" class="form-control" name="password" placeholder="พาสเวิร์ด (อย่างน้อย 8 ตัว)">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
 
                 @if ($errors->has('password'))
