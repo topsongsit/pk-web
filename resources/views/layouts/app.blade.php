@@ -35,10 +35,10 @@
             <!-- Logo -->
             <!-- Header Navbar -->
             <nav class="navbar " style="background-color:#a71200;" role="navigation">
-                {{-- <!-- Sidebar toggle button-->
+                <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <span class="sr-only">Toggle navigation</span>
-                </a> --}}
+                </a>
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu" >
                     <ul class="nav navbar-nav">
@@ -47,8 +47,8 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="background-color:#a71100;">
                                 <!-- The user image in the navbar-->
-                                {{-- <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                     class="user-image" alt="User Image"/> --}}
+                                 <img src="/images/555.png"
+                                     class="user-image" alt="User Image"/> 
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{{ Auth::user()->name }}</span>
                             </a>

@@ -14,6 +14,34 @@
         <div class="col-md-8">
             <div class="card text-dark p-3">         
                <p class="text-center"> @include('flash::message')</p>
+
+               @empty(!$timetable)
+               <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">วัน</th>
+                        <th scope="col">เวลา</th>
+                        <th scope="col">ผู้สอน</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    
+                    <tbody>
+                        @foreach ($timetable as $timetable)
+                    @if(\Carbon\Carbon::parse($timetable->date)->gte(\Carbon\Carbon::now()))
+                      <tr>
+                        <td>{{  \Carbon\Carbon::parse($timetable->date)->format('Y-m-d') }}</td>
+                        <td>{{ $timetable->day->dname }}</td>
+                        <td> {{  $timetable->trainer->tname}}</td>
+                        <td> <a href="{{ route('booking.reserve' , ['id' => $timetable->id , 'bookingId' => $booking->id ]) }}">จอง</a></td>
+                      </tr>
+                      @endif
+                      @endforeach
+                      @endempty
+                    </tbody>
+                  </table>
+
+{{-- 
                 @empty(!$timetable)
                 <div class="row">
                     <div class="col-sm-3 text-left">
@@ -45,7 +73,7 @@
                         </div>
                         @endif
                     @endforeach
-                @endempty
+                @endempty --}}
 
 
                 <br><div class="text-right">

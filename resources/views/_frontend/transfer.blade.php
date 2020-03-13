@@ -12,8 +12,40 @@
             </div>            
         </div>
         <div class="col-md-8">
-            <div class="card text-dark p-3">                      
+            <div class="card text-dark p-3">   
+
                 @empty(!$bookings)
+                <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col">รหัส</th>
+                        <th scope="col">คอร์ส</th>
+                        <th scope="col">ผู้สอน</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    
+                    <tbody>
+                        @foreach ($bookings as $booking)
+                      <tr>
+                        <td>{{ $booking->booking_number }}</td>
+                        <td>{{ $booking->course->cname }}</td>
+                        <td>{{ $booking->trainer->tname }}</td>
+                        <td>@if ($booking->status_id == 1)
+                            <a href="{{ route('booking.show' , ['id' => $booking->id]) }}">อัปโหลด</a> 
+                            <a href="javascript:CancelBooking({{ $booking->id }})" >ยกเลิก</a> 
+                            @elseif ($booking->status_id == 3)
+                            <a href="{{ route('booking.timetable' , ['id' => $booking->id]) }}">เลือกเวลาเรียน</a>
+                            @else 
+                            <strong><a>รอดำเนินการ</a></strong>
+                                @endif</td>
+                      </tr>
+                      @endforeach
+                      @endempty
+                    </tbody>
+                  </table>
+
+                {{-- @empty(!$bookings)
                 <div class="row">
                     <div class="col-sm-4 text-left">
                         <strong>รหัส</strong>
@@ -49,7 +81,8 @@
                             </div>
                         </div>
                     @endforeach
-                @endempty
+                @endempty --}}
+                
             </div>       
         </div>
     </div>

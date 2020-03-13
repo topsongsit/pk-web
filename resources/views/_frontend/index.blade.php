@@ -4,12 +4,12 @@
     <header style="font-family: 'Prompt', sans-serif ;"> 
 
     <br><div class="row">
-        <h3 class="col-sm-8">โปรโมชัน</h3>
-        <h3 class="col-sm-4">ข่าวสาร</h3>
         <div class="col-md-8">
+            <h3>โปรโมชัน</h3>
             <img class="rounded float-left" src="/images/promotion.png" alt="Responsive image" style="width:100%">
         </div>
         <div class="col-md-4">
+            <h3>ข่าวสาร</h3>
             <img class="rounded float-left" src="/images/555.jpg" alt="Responsive image" style="width:90%">
         </div>
     </div>
@@ -20,7 +20,7 @@
         {{-- เงื่อนไขดึงมาจาก controller --}}
         {{-- {{ $course }} --}}
         <div class="col-md-4 ">
-        <a href="/course?id={{ $course->id }}">
+        <a href="/course?id={{ $course->id }}" >
             <div class="card">
                 <img class="card-img-top d-flex" src="{{ $course->cimg }}" alt="Card image cap">
                 <div class="card-body">
@@ -75,8 +75,8 @@
     {{-- สนามมวย --}}
 
     </header>
+    
 </div>
-
 @endsection
 
 <style>
