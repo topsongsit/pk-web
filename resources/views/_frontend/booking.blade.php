@@ -18,7 +18,7 @@
        <h5> และทำการแจ้งการโอนเงินได้ที่เมนู "ประวัติส่วนตัว > การจอง"</h5><br>
        <div  class="text-danger">
        <h5> หมายเหตุ</h5>
-       <h5> *** ลูกค้าจะต้องแจ้งยืนยันการโอนเงินให้ทางค่าย ภายใน 3 วัน จึงจะถือว่าเป็นการชำระค่าสินค้าที่เสร็จสิ้นสมบูรณ์ หากไม่มีการยกเลิก ทางค่ายของสงวนสิทธิ์เก็บค่ามัดจำ ***</h5>
+       <h5> *** ลูกค้าจะต้องแจ้งการโอนเงินให้ทางค่าย ภายใน 3 วัน จึงจะถือว่าเป็นการจองที่เสร็จสิ้นสมบูรณ์ หากไม่มีการยกเลิก ทางค่ายของสงวนสิทธิ์ยกเลิกการจอง ***</h5>
         </div><br><br>
     </div>
     @if(request()->has('status') && request()->status == 'success')
@@ -33,7 +33,7 @@
             <div>
                 <input type="file" name="image">
                 <input type="hidden" name="booking_number" value="{{$booking->booking_number}}">
-                <button type="submit" class="btn btn-primary btn-danger">อัพโหลด</button>
+                <button type="submit" class="btn btn-primary btn-danger">อัปโหลด</button>
             </div>
         </form>
     </div>

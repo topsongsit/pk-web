@@ -16,7 +16,7 @@
         
         <div class="col-md-8">
             <div class="card text-dark p-3">    
-                
+                *ไม่สามารถยกเลิกเวลาเรียน 1 วันก่อนมาเรียน*
                 @empty(!$bookingusers)
                 <table class="table table-borderless">
                     <thead>
