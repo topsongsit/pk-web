@@ -11,11 +11,12 @@
                 <a class="nav-link" href="/mytabletime">ตารางเรียน</a>        
             </div>            
         </div>
+        
         <div class="col-md-8">
             <div class="card text-dark p-3">   
 
                 @empty(!$bookings)
-                <table class="table table-borderless">
+                <table class="table table-borderless table-sm">
                     <thead>
                       <tr>
                         <th scope="col">รหัส</th>
@@ -28,8 +29,8 @@
                     <tbody>
                         @foreach ($bookings as $booking)
                       <tr>
-                        <td>{{ $booking->booking_number }}</td>
-                        <td>{{ $booking->course->cname }}</td>
+                        <td >{{ $booking->booking_number }}</td>
+                        <td >{{ $booking->course->cname }}</td>
                         <td>{{ $booking->trainer->tname }}</td>
                         <td>@if ($booking->status_id == 1)
                             <a href="{{ route('booking.show' , ['id' => $booking->id]) }}">อัปโหลด</a> 
@@ -38,8 +39,9 @@
                             <a href="{{ route('booking.timetable' , ['id' => $booking->id]) }}">เลือกเวลาเรียน</a>
                             @else 
                             <strong><a>รอดำเนินการ</a></strong>
-                                @endif</td>
+                            </td>
                       </tr>
+                      @endif
                       @endforeach
                       @endempty
                     </tbody>
@@ -82,11 +84,10 @@
                         </div>
                     @endforeach
                 @endempty --}}
-                
+            </div>       
+        </div>       
             </div>       
         </div>
-    </div>
-    </div>
     </header>
     
 @endsection
