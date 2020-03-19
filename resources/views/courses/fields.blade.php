@@ -35,6 +35,13 @@
     {!! Form::number('cprice', null, ['class' => 'form-control']) !!}
 </div>
 
+
+<!-- cday Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('cday', 'Day:') !!}
+    {!! Form::number('cday', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

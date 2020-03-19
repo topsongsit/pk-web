@@ -54,11 +54,12 @@ class CourseController extends AppBaseController
      */
     public function store(Request $request)
     {
-        if ($request->has('cimg_new')) {
-            // upload image  
-            $path = $request->file('cimg_new')->store('uploads');
-            $input['cimg'] = $path;
-        }
+
+        // upload image  
+        $imageName = time() . '.' . request()->cimg->getClientOriginalExtension();
+        request()->cimg->move(public_path('uploads'), $imageName);
+        $input = $request->all();
+        $input['cimg'] = '/uploads/' . $imageName;
 
         $course = $this->courseRepository->create($input);
 

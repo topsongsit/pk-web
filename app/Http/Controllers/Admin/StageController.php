@@ -54,11 +54,12 @@ class StageController extends AppBaseController
      */
     public function store(Request $request)
     {
-        if ($request->has('stimg_new')) {
-            // upload image  
-            $path = $request->file('stimg_new')->store('uploads');
-            $input['stimg'] = $path;
-        }
+
+        // upload image  
+        $imageName = time() . '.' . request()->stimg->getClientOriginalExtension();
+        request()->stimg->move(public_path('uploads'), $imageName);
+        $input = $request->all();
+        $input['stimg'] = '/uploads/' . $imageName;
 
         $stages = $this->stageRepository->create($input);
 

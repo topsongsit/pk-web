@@ -22,3 +22,9 @@
     <p>{{ $course->cprice }}</p>
 </div>
 
+
+<!-- Cprice Field -->
+<div class="form-group">
+    {!! Form::label('cday', 'Day:') !!}
+    <p>{{ $course->cday }}</p>
+</div>

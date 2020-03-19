@@ -54,11 +54,12 @@ class TrainerController extends AppBaseController
      */
     public function store(CreateTrainerRequest $request)
     {
-        if ($request->has('timg_new')) {
-            // upload image  
-            $path = $request->file('timg_new')->store('uploads');
-            $input['timg'] = $path;
-        }
+
+        // upload image  
+        $imageName = time() . '.' . request()->timg->getClientOriginalExtension();
+        request()->timg->move(public_path('uploads'), $imageName);
+        $input = $request->all();
+        $input['timg'] = '/uploads/' . $imageName;
 
         $trainer = $this->trainerRepository->create($input);
 
