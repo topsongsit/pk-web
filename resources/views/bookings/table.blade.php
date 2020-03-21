@@ -1,5 +1,5 @@
-<div class="table-responsive">
-    <table class="table" id="bookings-table">
+        <table class="table" id="bookings-table">
+    
         <thead>
             <tr>
                 <th>User</th>
@@ -38,11 +38,22 @@
         </tbody>
     </table>
 </div>
-
 @section('scripts')
 <script type="text/javascript">
+
     $(document).ready( function () {
-        $('#bookings-table').DataTable();
+       $('#bookings-table').DataTable( {
+        dom: 'Bfrtip',
+        lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print','pageLength'
+        ]
     } );
-    </script>
+} );
+</script>
+
 @endsection
+
